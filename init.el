@@ -41,6 +41,8 @@
 (use-package magit
   :ensure t)
 
+;;; org-mode
+(setq org-support-shift-select t)
 
 ;; ido
 (setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))

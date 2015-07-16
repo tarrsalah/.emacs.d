@@ -1,93 +1,91 @@
-# .emacs.d configuration files
+* .emacs.d configuration files
 
-## Misc settings
-
+** Misc settings
  Turn on debugging when entering to the main `init.el` file (to turn
  off at the end).
 
-```
+#+BEGIN_SRC emacs-lisp
 (setq debug-on-error t)
 (setq debug-on-quit t)
-```
+#+END_SRC
 
-## Package archives and emacs initialization
-
+**  Package archives and emacs initialization
 Initially, set the automatic package loading to true and require
 the `package` feature.
 
-```
+#+BEGIN_SRC emacs-lisp
 (setq package-enable-at-startup nil)
-(require 'package)
-```
+(require 'package
+#+END_SRC
 
-Add [melpa-stable](http://melpa-stable.milkbox.net/packages/),
-[malpa](http://melpa.milkbox.net/packages/) and
-[elpa](http://tromey.com/elpa/) package sources.
+Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]],
+[[http://melpa.milkbox.net/packages/][malpa]] and
+[[http://tromey.com/elpa/][elpa]] package sources.
 
-```
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives
 		 '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives
 		 '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
 		 '("elpa" . "http://tromey.com/elpa/"))
-```
+#+END_SRC
 
-I use [use-package](https://github.com/jwiegley/use-package) for
-install and configure all my third-party packages.
+I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
+packages.
 
 First, I add `use-package` to `my-packages` variable.
-```
+
+#+BEGIN_SRC emacs-lisp
 (defvar my-packages
   '(use-package))
-```
+#+END_SRC
 
 Install all of `my-packages` and require `use-package`.
 
-```
+#+BEGIN_SRC emacs-lisp
 (dolist (p my-packages)
   (when (not (package-installed-p p))
   (package-install p)))
 
 (require 'use-package)
-```
+#+END_SRC
 
-## Theme
+** Theme
+My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the `color-theme`
+package.
 
-My preferred emacs theme is
-[twilight](https://github.com/crafterm/twilight-emacs) wich depends on
-the `color-theme` package.
-
-```
+#+BEGIN_SRC emacs-lisp
 (use-package color-theme
   :ensure t)
-```
+#+END_SRC
 
 load the `color-theme-twilight.el` file and enable it.
 
-```
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-file "~/.emacs.d/themes/color-theme-twilight.el")
 (color-theme-twilight)
-```
+#+END_SRC
 
-## Markdown
+** Keyboard shortcuts
+** Markdown
 
-```
+#+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t)
-```
+#+END_SRC
 
-## Magit
+** Magit
 
-```
+#+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t)
-```
+#+END_SRC
 
-## ido
+** ido
 
-```
+#+BEGIN_SRC emacs-lisp
 (setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
 (use-package ido
   :init (ido-mode 1)
@@ -98,13 +96,12 @@ load the `color-theme-twilight.el` file and enable it.
 	  ido-file-extensions-order my/ido-order))
   :bind (("C-x C-b" . ibuffer)
 	 ("C-b" . switch-to-buffer)))
-```
+#+END_SRC
 
-## On exit from the main init.el file
-
+** On exit
 Turn off debugging
 
-```
+#+BEGIN_SRC emacs-lisp
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
-```
+#+END_SRC
