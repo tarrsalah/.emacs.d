@@ -1,7 +1,7 @@
 * .emacs.d configuration files
 
 ** Misc settings
- Turn on debugging when entering to the main `init.el` file (to turn
+ Turn on debugging when entering to the main =init.el= file (to turn
  off at the end).
 
 #+BEGIN_SRC emacs-lisp
@@ -11,7 +11,7 @@
 
 **  Package archives and emacs initialization
 Initially, set the automatic package loading to true and require
-the `package` feature.
+the =package= feature.
 
 #+BEGIN_SRC emacs-lisp
 (setq package-enable-at-startup nil)
@@ -34,14 +34,14 @@ Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]],
 I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
 packages.
 
-First, I add `use-package` to `my-packages` variable.
+First, I add =use-package= to =my-packages= variable.
 
 #+BEGIN_SRC emacs-lisp
 (defvar my-packages
   '(use-package))
 #+END_SRC
 
-Install all of `my-packages` and require `use-package`.
+Install all of =my-packages= and require =use-package=.
 
 #+BEGIN_SRC emacs-lisp
 (dolist (p my-packages)
@@ -52,7 +52,7 @@ Install all of `my-packages` and require `use-package`.
 #+END_SRC
 
 ** Theme
-My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the `color-theme`
+My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the =color-theme=
 package.
 
 #+BEGIN_SRC emacs-lisp
@@ -60,7 +60,7 @@ package.
   :ensure t)
 #+END_SRC
 
-load the `color-theme-twilight.el` file and enable it.
+load the =color-theme-twilight.el= file and enable it.
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
