@@ -68,9 +68,8 @@
 
 ** Keyboard shortcuts
 
-| =C-b=     | switch-to-buffer |
-|-----------+------------------|
-| =C-x C-b= | ibuffer          |
+| C-b     | switch-to-buffer |
+| C-x C-b | ibuffer          |
 #+TBLFM: $1=C-x
 
 
