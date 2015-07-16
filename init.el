@@ -1,3 +1,7 @@
+;;; turn on debugging
+(setq debug-on-error t)
+(setq debug-on-quit t)
+
 (setq package-enable-at-startup nil)
 (require 'package)
 
@@ -36,3 +40,20 @@
 ;; magit
 (use-package magit
   :ensure t)
+
+
+;; ido
+(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+(use-package ido
+  :init (ido-mode 1)
+  :config
+  (progn
+    (setq ido-enable-flex-matching t
+	  ido-everywhere t
+	  ido-file-extensions-order my/ido-order))
+  :bind (("C-x C-b" . ibuffer)
+	 ("C-b" . switch-to-buffer)))
+
+;;; trun of debugging
+(setq debug-on-error nil)
+(setq debug-on-quit nil)

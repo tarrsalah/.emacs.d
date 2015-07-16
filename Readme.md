@@ -1,5 +1,15 @@
 # .emacs.d configuration files
 
+## Misc settings
+
+ Turn on debugging when entering to the main `init.el` file (to turn
+ off at the end).
+
+```
+(setq debug-on-error t)
+(setq debug-on-quit t)
+```
+
 ## Package archives and emacs initialization
 
 Initially, set the automatic package loading to true and require
@@ -73,4 +83,28 @@ load the `color-theme-twilight.el` file and enable it.
 ```
 (use-package magit
   :ensure t)
+```
+
+## ido
+
+```
+(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+(use-package ido
+  :init (ido-mode 1)
+  :config
+  (progn
+	(setq ido-enable-flex-matching t
+	  ido-everywhere t
+	  ido-file-extensions-order my/ido-order))
+  :bind (("C-x C-b" . ibuffer)
+	 ("C-b" . switch-to-buffer)))
+```
+
+## On exit from the main init.el file
+
+Turn off debugging
+
+```
+(setq debug-on-error nil)
+(setq debug-on-quit nil)
 ```
