@@ -70,8 +70,7 @@
 
 | C-b     | switch-to-buffer |
 | C-x C-b | ibuffer          |
-#+TBLFM: $1=C-x
-
+| C-x g   | magit-status     |
 
 ** Markdown
 
@@ -84,7 +83,8 @@
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g". magit-status)))
 #+END_SRC
 
 ** ido

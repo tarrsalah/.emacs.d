@@ -39,7 +39,8 @@
 
 ;; magit
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g". magit-status)))
 
 ;;; org-mode
 (setq org-support-shift-select t)
