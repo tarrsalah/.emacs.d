@@ -4,116 +4,139 @@
    Turn on debugging when entering to the main =init.el= file (to turn
    off at the end).
 
-#+BEGIN_SRC emacs-lisp
-(setq debug-on-error t)
-(setq debug-on-quit t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (setq debug-on-error t)
+   (setq debug-on-quit t)
+   #+END_SRC
 
+   Disable the emacs menubar, toolbar and scrollbar.
+
+   #+BEGIN_SRC emacs-lisp
+   (menu-bar-mode 0)
+   (tool-bar-mode 0)
+   (scroll-bar-mode 0)
+   #+END_SRC
+
+   Enable show paren mode.
+
+   #+BEGIN_SRC emacs-lisp
+   (show-paren-mode 1)
+   #+END_SRC
+
+   Replace the active region just by typing text.
+
+   #+BEGIN_SRC emacs-lisp
+   (delete-selection-mode 1)
+   #+END_SRC
+
+   Highlight the current line.
+   #+BEGIN_SRC emacs-lisp
+   (global-hl-line-mode 1)
+   #+END_SRC
 ** Package archives and emacs initialization
    Initially, set the automatic package loading to true and require
    the =package= feature.
 
-#+BEGIN_SRC emacs-lisp
-(setq package-enable-at-startup nil)
-(require 'package)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (setq package-enable-at-startup nil)
+   (require 'package)
+   #+END_SRC
 
    Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]], [[http://melpa.milkbox.net/packages/][malpa]] and [[http://tromey.com/elpa/][elpa]] package sources.
 
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'package-archives
-		 '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
-(add-to-list 'package-archives
-		 '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-		 '("elpa" . "http://tromey.com/elpa/"))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'package-archives
+		    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+   (add-to-list 'package-archives
+		    '("melpa" . "http://melpa.milkbox.net/packages/"))
+   (add-to-list 'package-archives
+		    '("elpa" . "http://tromey.com/elpa/"))
+   #+END_SRC
 
    I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
    packages.
 
    First, I add =use-package= to =my-packages= variable.
 
-#+BEGIN_SRC emacs-lisp
-(defvar my-packages
-  '(use-package))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (defvar my-packages
+     '(use-package))
+   #+END_SRC
 
    Install all of =my-packages= and require =use-package=.
 
-#+BEGIN_SRC emacs-lisp
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-  (package-install p)))
+   #+BEGIN_SRC emacs-lisp
+   (dolist (p my-packages)
+     (when (not (package-installed-p p))
+     (package-install p)))
 
-(require 'use-package)
-#+END_SRC
+   (require 'use-package)
+   #+END_SRC
 
 ** Theme
    My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the =color-theme=
    package.
 
-#+BEGIN_SRC emacs-lisp
-(use-package color-theme
-  :ensure t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (use-package color-theme
+     :ensure t)
+   #+END_SRC
 
    load the =color-theme-twilight.el= file and enable it.
 
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-file "~/.emacs.d/themes/color-theme-twilight.el")
-(color-theme-twilight)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+   (load-file "~/.emacs.d/themes/color-theme-twilight.el")
+   (color-theme-twilight)
+   #+END_SRC
 
 ** Keyboard shortcuts
 
-| C-b     | switch-to-buffer |
-| C-x C-b | ibuffer          |
-| C-x g   | magit-status     |
+   | C-b     | switch-to-buffer |
+   | C-x C-b | ibuffer          |
+   | C-x g   | magit-status     |
 
 ** Alias
 
-| eb  | eval-buffer        |
-| er  | eval-region        |
-| erb | erase-buffer       |
-| wc  | whitespace-cleanup |
-
+   | eb  | eval-buffer        |
+   | er  | eval-region        |
+   | erb | erase-buffer       |
+   | wc  | whitespace-cleanup |
 
 ** Markdown
 
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :ensure t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (use-package markdown-mode
+     :ensure t)
+   #+END_SRC
 
 ** Magit
 
-#+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t
-  :bind (("C-x g". magit-status)))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (use-package magit
+     :ensure t
+     :bind (("C-x g". magit-status)))
+   #+END_SRC
 
 ** ido
 
-#+BEGIN_SRC emacs-lisp
-(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
-(use-package ido
-  :init (ido-mode 1)
-  :config
-  (progn
-	(setq ido-enable-flex-matching t
-	  ido-everywhere t
-	  ido-file-extensions-order my/ido-order))
-  :bind (("C-x C-b" . ibuffer)
-	 ("C-b" . switch-to-buffer)))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+   (use-package ido
+     :init (ido-mode 1)
+     :config
+     (progn
+	   (setq ido-enable-flex-matching t
+	     ido-everywhere t
+	     ido-file-extensions-order my/ido-order))
+     :bind (("C-x C-b" . ibuffer)
+	    ("C-b" . switch-to-buffer)))
+   #+END_SRC
 
 ** On exit
    Turn off debugging
 
-#+BEGIN_SRC emacs-lisp
-(setq debug-on-error nil)
-(setq debug-on-quit nil)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (setq debug-on-error nil)
+   (setq debug-on-quit nil)
+   #+END_SRC

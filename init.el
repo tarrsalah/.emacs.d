@@ -14,6 +14,14 @@
 
 (package-initialize)
 
+;;; misc settings
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(show-paren-mode 1)
+(delete-selection-mode 1)
+(global-hl-line-mode 1)
+
 ;;; install first-class packages
 (defvar my-packages
   '(use-package))
