@@ -72,6 +72,14 @@
 | C-x C-b | ibuffer          |
 | C-x g   | magit-status     |
 
+** Alias
+
+| eb  | eval-buffer        |
+| er  | eval-region        |
+| erb | erase-buffer       |
+| wc  | whitespace-cleanup |
+
+
 ** Markdown
 
 #+BEGIN_SRC emacs-lisp

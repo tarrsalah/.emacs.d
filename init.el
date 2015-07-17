@@ -57,6 +57,13 @@
   :bind (("C-x C-b" . ibuffer)
 	 ("C-b" . switch-to-buffer)))
 
+;;; alias
+(defalias 'eb 'eval-buffer)
+(defalias 'er 'eval-region)
+(defalias 'erb 'erase-buffer)
+
+(defalias 'wc 'whitespace-cleanup)
+
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
