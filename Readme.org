@@ -1,5 +1,4 @@
-* .emacs.d configuration files
-
+* My emacs configuration files
 ** Misc settings
    Turn on debugging when entering to the main =init.el= file (to turn
    off at the end).
@@ -90,18 +89,22 @@
    (color-theme-twilight)
    #+END_SRC
 
-** Keyboard shortcuts
+** Key Bindings
 
-   | C-b     | switch-to-buffer |
-   | C-x C-b | ibuffer          |
-   | C-x g   | magit-status     |
+   | C-b      | =switch-to-buffer=            |
+   | C-x C-b  | =ibuffer=                     |
+   | C-x g    | =magit-status=                |
+   | C-<tab>  | =other-window=                |
+   | C-;      | =comment-or-uncomment-region= |
+   | <escape> | =quiting with C-g=            |
+   | C-<menu> | =menu-bar-open=               |
 
 ** Alias
 
-   | eb  | eval-buffer        |
-   | er  | eval-region        |
-   | erb | erase-buffer       |
-   | wc  | whitespace-cleanup |
+   | eb  | =eval-buffer=        |
+   | er  | =eval-region=        |
+   | erb | =erase-buffer=       |
+   | wc  | =whitespace-cleanup= |
 
 ** Markdown
 

@@ -65,6 +65,15 @@
   :bind (("C-x C-b" . ibuffer)
 	 ("C-b" . switch-to-buffer)))
 
+;;; key bindings
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-<tab>") 'other-window)
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "<escape>") (kbd "C-g"))
+(global-set-key (kbd "C-<menu>") 'menu-bar-open)
+
+
 ;;; alias
 (defalias 'eb 'eval-buffer)
 (defalias 'er 'eval-region)
