@@ -65,6 +65,11 @@
   :bind (("C-x C-b" . ibuffer)
 	 ("C-b" . switch-to-buffer)))
 
+;;; expand region
+(use-package expand-region
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
+
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)

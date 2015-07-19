@@ -98,6 +98,7 @@
    | C-;      | =comment-or-uncomment-region= |
    | <escape> | =quiting with C-g=            |
    | C-<menu> | =menu-bar-open=               |
+   | C-=      | =er/expand-region=            |
 
 ** Alias
 
@@ -134,6 +135,15 @@
 	     ido-file-extensions-order my/ido-order))
      :bind (("C-x C-b" . ibuffer)
 	    ("C-b" . switch-to-buffer)))
+   #+END_SRC
+
+** expand-region
+   Use [[https://github.com/magnars/expand-region.el][expand-region]] to increase selected region by semantic units.
+
+   #+BEGIN_SRC emacs-lisp
+   (use-package expand-region
+     :ensure t
+     :bind (("C-=" . er/expand-region)))
    #+END_SRC
 
 ** On exit
