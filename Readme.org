@@ -49,6 +49,18 @@
    (put 'erase-buffer 'disabled nil)
    #+END_SRC
 
+** Backup files
+   This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc1][emacswiki/BackupDirecory]].
+   #+BEGIN_SRC
+   (setq
+     backup-by-copying t
+     backup-directory-alist
+      '(("." . "~/.saves"))
+     delete-old-versions t
+     kept-new-versions 6
+     kept-old-versions 2
+     version-control t)
+   #+END_SRC
 ** Package archives and emacs initialization
    Initially, set the automatic package loading to true and require
    the =package= feature.

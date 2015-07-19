@@ -25,7 +25,18 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq initial-scratch-message ""
-			inhibit-startup-message t)
+      inhibit-startup-message t)
+
+;; from http://www.emacswiki.org/emacs/BackupDirectory#toc1
+(setq
+   backup-by-copying t
+   backup-directory-alist
+    '(("." . "~/.saves"))
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
+
 ;; enable erace buffer
 (put 'erase-buffer 'disabled nil)
 
