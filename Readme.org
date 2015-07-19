@@ -91,21 +91,25 @@
 
 ** Key Bindings
 
-   | C-b      | =switch-to-buffer=            |
-   | C-x C-b  | =ibuffer=                     |
-   | C-x g    | =magit-status=                |
-   | C-<tab>  | =other-window=                |
-   | C-;      | =comment-or-uncomment-region= |
-   | <escape> | =quiting with C-g=            |
-   | C-<menu> | =menu-bar-open=               |
-   | C-=      | =er/expand-region=            |
+| Key        | Command                       |
+|------------+-------------------------------|
+| =C-b=      | =switch-to-buffer=            |
+| =C-x C-b=  | =ibuffer=                     |
+| =C-x g=    | =magit-status=                |
+| =C-<tab>=  | =other-window=                |
+| =C-;=      | =comment-or-uncomment-region= |
+| =<escape>= | =quiting with C-g=            |
+| =C-<menu>= | =menu-bar-open=               |
+| =C-==      | =er/expand-region=            |
 
 ** Alias
 
-   | eb  | =eval-buffer=        |
-   | er  | =eval-region=        |
-   | erb | =erase-buffer=       |
-   | wc  | =whitespace-cleanup= |
+| Alias | Command              |
+|-------+----------------------|
+| =eb=  | =eval-buffer=        |
+| =er=  | =eval-region=        |
+| =erb= | =erase-buffer=       |
+| =wc=  | =whitespace-cleanup= |
 
 ** Markdown
 
