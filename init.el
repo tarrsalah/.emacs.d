@@ -122,7 +122,13 @@
 
 ;; flycheck
 (use-package flycheck
-	:ensure t)
+  :ensure t)
+
+;; org-mode
+(use-package toc-org
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'toc-org-enable))
 
 ;; javascript
 (use-package js2-mode

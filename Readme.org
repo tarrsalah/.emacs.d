@@ -1,4 +1,24 @@
-* My emacs configuration files
+* My emacs configurations
+** Table of contents							:TOC_3:
+ - [[#my-emacs-configurations][My emacs configurations]]
+     - [[#misc-settings][Misc settings]]
+     - [[#backup-files][Backup files]]
+     - [[#package-archives-and-emacs-initialization][Package archives and emacs initialization]]
+     - [[#theme][Theme]]
+     - [[#key-bindings][Key Bindings]]
+     - [[#alias][Alias]]
+     - [[#markdown][Markdown]]
+     - [[#magit][Magit]]
+     - [[#ido][ido]]
+     - [[#projectile][projectile]]
+     - [[#expand-region][expand-region]]
+     - [[#autocomplete][Autocomplete]]
+     - [[#flycheck][Flycheck]]
+     - [[#org-mode][org-mode]]
+     - [[#programming-language-specific][Programming language-specific]]
+         - [[#javascript][javascript]]
+     - [[#on-exit][On exit]]
+
 ** Misc settings
 Turn on debugging when entering to the main =init.el= file (to turn
 off at the end).
@@ -228,6 +248,14 @@ I use [[https://github.com/company-mode/company-mode][company]] for enabling aut
   :ensure t)
 #+END_SRC
 
+** org-mode
+Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
+#+BEGIN_SRC emacs-lisp
+(use-package toc-org
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'toc-org-enable))
+#+END_SRC
 ** Programming language-specific
 *** javascript
 ** On exit
