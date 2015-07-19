@@ -72,7 +72,7 @@ Enable =erase-buffer=
 
 ** Kill buffer and its windows
 From this  [[%20http://www.emacswiki.org/emacs/misc-cmds.el][misc-cmds.el]]
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
 (defun kill-buffer-and-its-windows (buffer)
   "Kill BUFFER and delete its windows.  Default is `current-buffer'.
 BUFFER may be either a buffer or its name (a string)."

@@ -10,7 +10,7 @@
 (add-to-list 'package-archives
 			 '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
-			 '("elpa" . "http://tromey.com/elpa/"))
+	     '("elpa" . "http://tromey.com/elpa/"))
 
 (package-initialize)
 
