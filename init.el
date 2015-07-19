@@ -70,6 +70,19 @@
   :ensure t
   :bind (("C-=" . er/expand-region)))
 
+;; company
+(use-package company
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (progn
+    (setq company-tooltip-limit 10)
+    (setq company-idle-delay .1)
+    (setq company-echo-delay 0)
+    (setq company-begin-commands '(self-insert-command)))
+  :bind (("C-n" . company-complete)))
+
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)

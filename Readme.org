@@ -98,9 +98,10 @@
 | =C-x g=    | =magit-status=                |
 | =C-<tab>=  | =other-window=                |
 | =C-;=      | =comment-or-uncomment-region= |
-| =<escape>= | =quiting with C-g=            |
+| =<escape>= | =keyboard-quit= aka =C-g=     |
 | =C-<menu>= | =menu-bar-open=               |
 | =C-==      | =er/expand-region=            |
+| =C-n=      | =company-complete=            |
 
 ** Alias
 
@@ -149,6 +150,23 @@
      :ensure t
      :bind (("C-=" . er/expand-region)))
    #+END_SRC
+
+** Autocomplete
+   I use [[https://github.com/company-mode/company-mode][company]] for enabling auto-completion.
+
+#+BEGIN_SRC
+(use-package company
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (progn
+    (setq company-tooltip-limit 10)
+    (setq company-idle-delay .1)
+    (setq company-echo-delay 0)
+    (setq company-begin-commands '(self-insert-command)))
+  :bind (("C-n" . company-complete)))
+#+END_SRC
 
 ** On exit
    Turn off debugging
