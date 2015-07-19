@@ -44,6 +44,11 @@
 	 inhibit-startup-message t)
    #+END_SRC
 
+   Enable =erase-buffer=
+   #+BEGIN_SRC emacs-lisp
+   (put 'erase-buffer 'disabled nil)
+   #+END_SRC
+
 ** Package archives and emacs initialization
    Initially, set the automatic package loading to true and require
    the =package= feature.
@@ -114,6 +119,7 @@
    | =C-<menu>= | =menu-bar-open=               |
    | =C-==      | =er/expand-region=            |
    | =C-n=      | =company-complete=            |
+   | =C-x e=    | =erase-buffer=                |
 
 ** Alias
 

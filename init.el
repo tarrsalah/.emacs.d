@@ -26,6 +26,8 @@
 
 (setq initial-scratch-message ""
 			inhibit-startup-message t)
+;; enable erace buffer
+(put 'erase-buffer 'disabled nil)
 
 ;;; install first-class packages
 (defvar my-packages
@@ -146,6 +148,7 @@
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "<escape>") (kbd "C-g"))
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
+(global-set-key (kbd "C-x e") 'erase-buffer)
 
 ;;; alias
 (defalias 'eb 'eval-buffer)
