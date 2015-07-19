@@ -32,6 +32,18 @@
    #+BEGIN_SRC emacs-lisp
    (global-hl-line-mode 1)
    #+END_SRC
+
+   Change "yes or no" to "y or n"
+   #+BEGIN_SRC emacs-lisp
+   (fset 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
+
+   Empty scratch buffer
+   #+BEGIN_SRC emacs-lisp
+   (setq initial-scratch-message ""
+	 inhibit-startup-message t)
+   #+END_SRC
+
 ** Package archives and emacs initialization
    Initially, set the automatic package loading to true and require
    the =package= feature.
@@ -91,26 +103,26 @@
 
 ** Key Bindings
 
-| Key        | Command                       |
-|------------+-------------------------------|
-| =C-b=      | =switch-to-buffer=            |
-| =C-x C-b=  | =ibuffer=                     |
-| =C-x g=    | =magit-status=                |
-| =C-<tab>=  | =other-window=                |
-| =C-;=      | =comment-or-uncomment-region= |
-| =<escape>= | =keyboard-quit= aka =C-g=     |
-| =C-<menu>= | =menu-bar-open=               |
-| =C-==      | =er/expand-region=            |
-| =C-n=      | =company-complete=            |
+   | Key        | Command                       |
+   |------------+-------------------------------|
+   | =C-b=      | =switch-to-buffer=            |
+   | =C-x C-b=  | =ibuffer=                     |
+   | =C-x g=    | =magit-status=                |
+   | =C-<tab>=  | =other-window=                |
+   | =C-;=      | =comment-or-uncomment-region= |
+   | =<escape>= | =keyboard-quit= aka =C-g=     |
+   | =C-<menu>= | =menu-bar-open=               |
+   | =C-==      | =er/expand-region=            |
+   | =C-n=      | =company-complete=            |
 
 ** Alias
 
-| Alias | Command              |
-|-------+----------------------|
-| =eb=  | =eval-buffer=        |
-| =er=  | =eval-region=        |
-| =erb= | =erase-buffer=       |
-| =wc=  | =whitespace-cleanup= |
+   | Alias | Command              |
+   |-------+----------------------|
+   | =eb=  | =eval-buffer=        |
+   | =er=  | =eval-region=        |
+   | =erb= | =erase-buffer=       |
+   | =wc=  | =whitespace-cleanup= |
 
 ** Markdown
 
@@ -142,8 +154,8 @@
 	 ("C-b" . switch-to-buffer)))
 #+END_SRC
 
-** grizzl
-I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
+** projectile
+   I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
 
 #+BEGIN_SRC emacs-lisp
 (use-package grizzl
@@ -152,8 +164,6 @@ I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for pr
   (custom-set-faces
    '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
 #+END_SRC)
-
-** projectile
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile

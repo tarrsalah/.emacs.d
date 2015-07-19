@@ -22,6 +22,11 @@
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(setq initial-scratch-message ""
+      inhibit-startup-message t)
+
 ;;; install first-class packages
 (defvar my-packages
   '(use-package))
@@ -55,6 +60,7 @@
 
 ;; ido
 (setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+
 (use-package ido
   :init (ido-mode 1)
   :config
