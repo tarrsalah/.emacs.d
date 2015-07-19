@@ -1,162 +1,162 @@
 * My emacs configuration files
 ** Misc settings
-   Turn on debugging when entering to the main =init.el= file (to turn
-   off at the end).
+Turn on debugging when entering to the main =init.el= file (to turn
+off at the end).
 
-   #+BEGIN_SRC emacs-lisp
-   (setq debug-on-error t)
-   (setq debug-on-quit t)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq debug-on-error t)
+(setq debug-on-quit t)
+#+END_SRC
 
-   Disable the emacs menubar, toolbar and scrollbar.
+Disable the emacs menubar, toolbar and scrollbar.
 
-   #+BEGIN_SRC emacs-lisp
-   (menu-bar-mode 0)
-   (tool-bar-mode 0)
-   (scroll-bar-mode 0)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+#+END_SRC
 
-   Enable show paren mode.
+Enable show paren mode.
 
-   #+BEGIN_SRC emacs-lisp
-   (show-paren-mode 1)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+#+END_SRC
 
-   Replace the active region just by typing text.
+Replace the active region just by typing text.
 
-   #+BEGIN_SRC emacs-lisp
-   (delete-selection-mode 1)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(delete-selection-mode 1)
+#+END_SRC
 
-   Highlight the current line.
-   #+BEGIN_SRC emacs-lisp
-   (global-hl-line-mode 1)
-   #+END_SRC
+Highlight the current line.
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode 1)
+#+END_SRC
 
-   Change "yes or no" to "y or n"
-   #+BEGIN_SRC emacs-lisp
-   (fset 'yes-or-no-p 'y-or-n-p)
-   #+END_SRC
+Change "yes or no" to "y or n"
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 
-   Empty scratch buffer
-   #+BEGIN_SRC emacs-lisp
-   (setq initial-scratch-message ""
+Empty scratch buffer
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message ""
 	 inhibit-startup-message t)
-   #+END_SRC
+#+END_SRC
 
-   Enable =erase-buffer=
-   #+BEGIN_SRC emacs-lisp
-   (put 'erase-buffer 'disabled nil)
-   #+END_SRC
+Enable =erase-buffer=
+#+BEGIN_SRC emacs-lisp
+(put 'erase-buffer 'disabled nil)
+#+END_SRC
 
 ** Backup files
-   This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc1][emacswiki/BackupDirecory]].
-   #+BEGIN_SRC
-   (setq
-     backup-by-copying t
-     backup-directory-alist
-      '(("." . "~/.saves"))
-     delete-old-versions t
-     kept-new-versions 6
-     kept-old-versions 2
-     version-control t)
-   #+END_SRC
+This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc1][emacswiki/BackupDirecory]].
+#+BEGIN_SRC
+(setq
+  backup-by-copying t
+  backup-directory-alist
+   '(("." . "~/.saves"))
+  delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+#+END_SRC
 ** Package archives and emacs initialization
-   Initially, set the automatic package loading to true and require
-   the =package= feature.
+Initially, set the automatic package loading to true and require
+the =package= feature.
 
-   #+BEGIN_SRC emacs-lisp
-   (setq package-enable-at-startup nil)
-   (require 'package)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq package-enable-at-startup nil)
+(require 'package)
+#+END_SRC
 
-   Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]], [[http://melpa.milkbox.net/packages/][malpa]] and [[http://tromey.com/elpa/][elpa]] package sources.
+Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]], [[http://melpa.milkbox.net/packages/][malpa]] and [[http://tromey.com/elpa/][elpa]] package sources.
 
-   #+BEGIN_SRC emacs-lisp
-   (add-to-list 'package-archives
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'package-archives
 		    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
-   (add-to-list 'package-archives
+(add-to-list 'package-archives
 		    '("melpa" . "http://melpa.milkbox.net/packages/"))
-   (add-to-list 'package-archives
+(add-to-list 'package-archives
 		    '("elpa" . "http://tromey.com/elpa/"))
-   #+END_SRC
+#+END_SRC
 
-   I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
-   packages.
+I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
+packages.
 
-   First, I add =use-package= to =my-packages= variable.
+First, I add =use-package= to =my-packages= variable.
 
-   #+BEGIN_SRC emacs-lisp
-   (defvar my-packages
-     '(use-package))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(defvar my-packages
+  '(use-package))
+#+END_SRC
 
-   Install all of =my-packages= and require =use-package=.
+Install all of =my-packages= and require =use-package=.
 
-   #+BEGIN_SRC emacs-lisp
-   (dolist (p my-packages)
-     (when (not (package-installed-p p))
-     (package-install p)))
+#+BEGIN_SRC emacs-lisp
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+  (package-install p)))
 
-   (require 'use-package)
-   #+END_SRC
+(require 'use-package)
+#+END_SRC
 
 ** Theme
-   My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the =color-theme=
-   package.
+My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the =color-theme=
+package.
 
-   #+BEGIN_SRC emacs-lisp
-   (use-package color-theme
-     :ensure t)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package color-theme
+  :ensure t)
+#+END_SRC
 
-   load the =color-theme-twilight.el= file and enable it.
+load the =color-theme-twilight.el= file and enable it.
 
-   #+BEGIN_SRC emacs-lisp
-   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-   (load-file "~/.emacs.d/themes/color-theme-twilight.el")
-   (color-theme-twilight)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-file "~/.emacs.d/themes/color-theme-twilight.el")
+(color-theme-twilight)
+#+END_SRC
 
 ** Key Bindings
 
-   | Key        | Command                       |
-   |------------+-------------------------------|
-   | =C-b=      | =switch-to-buffer=            |
-   | =C-x C-b=  | =ibuffer=                     |
-   | =C-x g=    | =magit-status=                |
-   | =C-<tab>=  | =other-window=                |
-   | =C-;=      | =comment-or-uncomment-region= |
-   | =<escape>= | =keyboard-quit= aka =C-g=     |
-   | =C-<menu>= | =menu-bar-open=               |
-   | =C-==      | =er/expand-region=            |
-   | =C-n=      | =company-complete=            |
-   | =C-x e=    | =erase-buffer=                |
+| Key        | Command                       |
+|------------+-------------------------------|
+| =C-b=      | =switch-to-buffer=            |
+| =C-x C-b=  | =ibuffer=                     |
+| =C-x g=    | =magit-status=                |
+| =C-<tab>=  | =other-window=                |
+| =C-;=      | =comment-or-uncomment-region= |
+| =<escape>= | =keyboard-quit= aka =C-g=     |
+| =C-<menu>= | =menu-bar-open=               |
+| =C-==      | =er/expand-region=            |
+| =C-n=      | =company-complete=            |
+| =C-x e=    | =erase-buffer=                |
 
 ** Alias
 
-   | Alias | Command              |
-   |-------+----------------------|
-   | =eb=  | =eval-buffer=        |
-   | =er=  | =eval-region=        |
-   | =erb= | =erase-buffer=       |
-   | =wc=  | =whitespace-cleanup= |
-   | =fc=  | =flycheck-mode=      |
+| Alias | Command              |
+|-------+----------------------|
+| =eb=  | =eval-buffer=        |
+| =er=  | =eval-region=        |
+| =erb= | =erase-buffer=       |
+| =wc=  | =whitespace-cleanup= |
+| =fc=  | =flycheck-mode=      |
 
 ** Markdown
 
-   #+BEGIN_SRC emacs-lisp
-   (use-package markdown-mode
-     :ensure t)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t)
+#+END_SRC
 
 ** Magit
 
-   #+BEGIN_SRC emacs-lisp
-   (use-package magit
-     :ensure t
-     :bind (("C-x g". magit-status)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :bind (("C-x g". magit-status)))
+#+END_SRC
 
 ** ido
 
@@ -174,7 +174,7 @@
 #+END_SRC
 
 ** projectile
-   I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
+I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
 
 #+BEGIN_SRC emacs-lisp
 (use-package grizzl
@@ -197,16 +197,16 @@
 #+END_SRC
 
 ** expand-region
-   Use [[https://github.com/magnars/expand-region.el][expand-region]] to increase selected region by semantic units.
+Use [[https://github.com/magnars/expand-region.el][expand-region]] to increase selected region by semantic units.
 
-   #+BEGIN_SRC emacs-lisp
-   (use-package expand-region
-     :ensure t
-     :bind (("C-=" . er/expand-region)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package expand-region
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
+#+END_SRC
 
 ** Autocomplete
-   I use [[https://github.com/company-mode/company-mode][company]] for enabling auto-completion.
+I use [[https://github.com/company-mode/company-mode][company]] for enabling auto-completion.
 
 #+BEGIN_SRC
 (use-package company
@@ -225,26 +225,15 @@
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
-	:ensure t
-	:init
-	(progn
-		(add-hook 'after-init-hook #'global-flycheck-mode)
-		(flycheck-add-mode 'javascript-eslint 'js2-mode)
-		(setq-default flycheck-disabled-checkers
-			      (append flycheck-disabled-checkers
-				      '(javascript-jshint)))
-
-		(setq-default flycheck-disabled-checkers
-			      (append flycheck-disabled-checkers
-				      '(json-jsonlist)))))
+  :ensure t)
 #+END_SRC
 
 ** Programming language-specific
 *** javascript
 ** On exit
-   Turn off debugging
+Turn off debugging
 
-   #+BEGIN_SRC emacs-lisp
-   (setq debug-on-error nil)
-   (setq debug-on-quit nil)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq debug-on-error nil)
+(setq debug-on-quit nil)
+#+END_SRC
