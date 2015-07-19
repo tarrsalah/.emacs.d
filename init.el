@@ -83,6 +83,24 @@
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
 
+;; grizzl for projectile completion
+(use-package grizzl
+  :ensure t
+  :config
+  (custom-set-faces
+   '(grizzl-selection-face ((t (:foreground "#8F9D6A"))))))
+
+;; projectile
+(use-package projectile
+  :ensure t
+  :config
+  (progn
+    (projectile-global-mode)
+    (setq projectile-completion-system 'grizzl)
+    (setq projectile-enable-caching t)
+    (add-to-list
+    'projectile-globally-ignored-directories "node_modules")))
+
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
@@ -90,7 +108,6 @@
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "<escape>") (kbd "C-g"))
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
-
 
 ;;; alias
 (defalias 'eb 'eval-buffer)

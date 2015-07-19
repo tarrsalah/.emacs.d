@@ -129,18 +129,43 @@
 
 ** ido
 
-   #+BEGIN_SRC emacs-lisp
-   (setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
-   (use-package ido
-     :init (ido-mode 1)
-     :config
-     (progn
-	   (setq ido-enable-flex-matching t
-	     ido-everywhere t
-	     ido-file-extensions-order my/ido-order))
-     :bind (("C-x C-b" . ibuffer)
-	    ("C-b" . switch-to-buffer)))
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+(use-package ido
+  :init (ido-mode 1)
+  :config
+  (progn
+	(setq ido-enable-flex-matching t
+	  ido-everywhere t
+	  ido-file-extensions-order my/ido-order))
+  :bind (("C-x C-b" . ibuffer)
+	 ("C-b" . switch-to-buffer)))
+#+END_SRC
+
+** grizzl
+I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
+
+#+BEGIN_SRC emacs-lisp
+(use-package grizzl
+  :ensure t
+  :config
+  (custom-set-faces
+   '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
+#+END_SRC)
+
+** projectile
+
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :ensure t
+  :config
+  (progn
+    (projectile-global-mode)
+    (setq projectile-completion-system 'grizzl)
+    (setq projectile-enable-caching t)
+    (add-to-list
+    'projectile-globally-ignored-directories "node_modules")))
+#+END_SRC
 
 ** expand-region
    Use [[https://github.com/magnars/expand-region.el][expand-region]] to increase selected region by semantic units.
