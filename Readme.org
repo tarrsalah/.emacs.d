@@ -123,6 +123,7 @@
    | =er=  | =eval-region=        |
    | =erb= | =erase-buffer=       |
    | =wc=  | =whitespace-cleanup= |
+   | =fc=  | =flycheck-mode=      |
 
 ** Markdown
 
@@ -203,6 +204,25 @@
   :bind (("C-n" . company-complete)))
 #+END_SRC
 
+** Flycheck
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+	:ensure t
+	:init
+	(progn
+		(add-hook 'after-init-hook #'global-flycheck-mode)
+		(flycheck-add-mode 'javascript-eslint 'js2-mode)
+		(setq-default flycheck-disabled-checkers
+			      (append flycheck-disabled-checkers
+				      '(javascript-jshint)))
+
+		(setq-default flycheck-disabled-checkers
+			      (append flycheck-disabled-checkers
+				      '(json-jsonlist)))))
+#+END_SRC
+
+** Programming language-specific
+*** javascript
 ** On exit
    Turn off debugging
 
