@@ -6,7 +6,7 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+	     '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
@@ -62,6 +62,15 @@ BUFFER may be either a buffer or its name (a string)."
       (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
 (substitute-key-definition 'kill-buffer 'kill-buffer-and-its-windows global-map)
+
+;;; dired
+(add-hook 'dired-load-hook
+	  '(lambda () (require 'dired-x)))
+(add-hook 'dired-mode-hook
+	  (lambda () (dired-hide-details-mode 1)))
+(setq dired-omit-mode t)
+(setq dired-omit-files "^\\.[^.]\\|\\.pdf$\\|\\.pyc$")
+
 
 ;;; install first-class packages
 (defvar my-packages

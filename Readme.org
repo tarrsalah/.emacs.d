@@ -3,6 +3,7 @@
  - [[#my-emacs-configurations][My emacs configurations]]
      - [[#misc-settings][Misc settings]]
      - [[#kill-buffer-and-its-windows][Kill buffer and its windows]]
+     - [[#todo-dired][TODO dired]]
      - [[#backup-files][Backup files]]
      - [[#package-archives-and-emacs-initialization][Package archives and emacs initialization]]
      - [[#theme][Theme]]
@@ -98,6 +99,7 @@ BUFFER may be either a buffer or its name (a string)."
 (substitute-key-definition 'kill-buffer 'kill-buffer-and-its-windows global-map)
 #+END_SRC
 
+** TODO dired
 ** Backup files
 This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc1][emacswiki/BackupDirecory]].
 #+BEGIN_SRC
