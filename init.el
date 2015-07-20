@@ -124,6 +124,7 @@ BUFFER may be either a buffer or its name (a string)."
 ;; company
 (use-package company
   :ensure t
+  :diminish company-mode
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :config
@@ -155,11 +156,13 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; flycheck
 (use-package flycheck
+  :diminish flycheck-mode
   :ensure t)
 
 ;; yasnippet
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config
   (progn
     (yas-global-mode 1)
