@@ -15,9 +15,12 @@
      - [[#expand-region][expand-region]]
      - [[#autocomplete][Autocomplete]]
      - [[#flycheck][Flycheck]]
+     - [[#todo-yasnippet][TODO Yasnippet]]
      - [[#org-mode][org-mode]]
      - [[#programming-language-specific][Programming language-specific]]
-         - [[#javascript][javascript]]
+         - [[#todo-javascript][TODO javascript]]
+         - [[#todo-python][TODO python]]
+         - [[#todo-go][TODO go]]
      - [[#on-exit][On exit]]
 
 ** Misc settings
@@ -207,7 +210,8 @@ load the =color-theme-twilight.el= file and enable it.
 ** ido
 
 #+BEGIN_SRC emacs-lisp
-(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+(setq my/ido-order '(".tex" ".go" ".js" ".el" ".py"))
+
 (use-package ido
   :init (ido-mode 1)
   :config
@@ -274,6 +278,7 @@ I use [[https://github.com/company-mode/company-mode][company]] for enabling aut
   :ensure t)
 #+END_SRC
 
+** TODO Yasnippet
 ** org-mode
 Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
 #+BEGIN_SRC emacs-lisp
@@ -283,7 +288,9 @@ Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
   (add-hook 'org-mode-hook 'toc-org-enable))
 #+END_SRC
 ** Programming language-specific
-*** javascript
+*** TODO javascript
+*** TODO python
+*** TODO go
 ** On exit
 Turn off debugging
 

@@ -1,4 +1,4 @@
-;;; turn on debugging
+;; turn on debugging
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
@@ -6,9 +6,9 @@
 (require 'package)
 
 (add-to-list 'package-archives
-			 '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+	     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives
-			 '("melpa" . "http://melpa.milkbox.net/packages/"))
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
 	     '("elpa" . "http://tromey.com/elpa/"))
 
@@ -95,57 +95,68 @@ BUFFER may be either a buffer or its name (a string)."
 (setq org-support-shift-select t)
 
 ;; ido
-(setq my/ido-order '(".tex" ".go" ".clj" ".el" ".lisp" ".cl" ".ini" ".cfg" ".cnf"))
+(setq my/ido-order '(".tex" ".go" ".js" ".el" ".py"))
 
 (use-package ido
-	:init (ido-mode 1)
-	:config
-	(progn
-		(setq ido-enable-flex-matching t
-		ido-everywhere t
-		ido-file-extensions-order my/ido-order))
-	:bind (("C-x C-b" . ibuffer)
+  :init (ido-mode 1)
+  :config
+  (progn
+    (setq ido-enable-flex-matching t
+	  ido-everywhere t
+	  ido-file-extensions-order my/ido-order))
+  :bind (("C-x C-b" . ibuffer)
 	 ("C-b" . switch-to-buffer)))
 
 ;;; expand region
 (use-package expand-region
-	:ensure t
-	:bind (("C-=" . er/expand-region)))
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
 
 ;; company
 (use-package company
-	:ensure t
-	:init
-	(add-hook 'after-init-hook 'global-company-mode)
-	:config
-	(progn
-		(setq company-tooltip-limit 10)
-		(setq company-idle-delay .1)
-		(setq company-echo-delay 0)
-		(setq company-begin-commands '(self-insert-command)))
-	:bind (("C-n" . company-complete)))
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (progn
+    (setq company-tooltip-limit 10)
+    (setq company-idle-delay .1)
+    (setq company-echo-delay 0)
+    (setq company-begin-commands '(self-insert-command)))
+  :bind (("C-n" . company-complete)))
 
 ;; grizzl for projectile completion
 (use-package grizzl
-	:ensure t
-	:config
-	(custom-set-faces
-	 '(grizzl-selection-face ((t (:foreground "#8F9D6A"))))))
+  :ensure t
+  :config
+  (custom-set-faces
+   '(grizzl-selection-face ((t (:foreground "#8F9D6A"))))))
 
 ;; projectile
 (use-package projectile
-	:ensure t
-	:config
-	(progn
-		(projectile-global-mode)
-		(setq projectile-completion-system 'grizzl)
-		(setq projectile-enable-caching t)
-		(add-to-list
-		 'projectile-globally-ignored-directories "node_modules")))
+  :ensure t
+  :config
+  (progn
+    (projectile-global-mode)
+    (setq projectile-completion-system 'grizzl)
+    (setq projectile-keymap-prefix (kbd "C-c p"))
+    (setq projectile-enable-caching t)
+    (add-to-list
+     'projectile-globally-ignored-directories "node_modules")))
 
 ;; flycheck
 (use-package flycheck
   :ensure t)
+
+;; yasnippet
+(use-package yasnippet
+  :ensure t
+  :config
+  (progn
+    (yas-global-mode 1)
+    (setq yas-snippet-dirs
+	  (append yas-snippet-dirs
+		  '("~/.emacs/snippets")))))
 
 ;; org-mode
 (use-package toc-org
@@ -155,31 +166,31 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; javascript
 (use-package js2-mode
-	:ensure t
-	:init
-	(progn
-		(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-		(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode)))
-	:config
-	(progn
-	  (add-hook 'js2-mode-hook
-		    (lambda()
-		      (progn
-			(tern-mode t)
-			(setq js2-basic-offset 2)
-			(flycheck-mode))))
-	  (setq-default js2-additional-externs '("require" "module"))
-	  (use-package company-tern
-	    :ensure t
-	    :config
-	    (add-to-list 'company-backends 'company-tern))
-	  (flycheck-add-mode 'javascript-eslint 'js2-mode)
-	  (setq-default flycheck-disabled-checkers
-			(append flycheck-disabled-checkers
-				'(javascript-jshint)))
-	  (setq-default flycheck-disabled-checkers
-			(append flycheck-disabled-checkers
-				'(json-jsonlist)))))
+  :ensure t
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode)))
+  :config
+  (progn
+    (add-hook 'js2-mode-hook
+	      (lambda()
+		(progn
+		  (tern-mode t)
+		  (setq js2-basic-offset 2)
+		  (flycheck-mode))))
+    (setq-default js2-additional-externs '("require" "module"))
+    (use-package company-tern
+      :ensure ;TODO:
+      :config
+      (add-to-list 'company-backends 'company-tern))
+    (flycheck-add-mode 'javascript-eslint 'js2-mode)
+    (setq-default flycheck-disabled-checkers
+		  (append flycheck-disabled-checkers
+			  '(javascript-jshint)))
+    (setq-default flycheck-disabled-checkers
+		  (append flycheck-disabled-checkers
+			  '(json-jsonlist)))))
 
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
