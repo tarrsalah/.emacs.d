@@ -1,30 +1,31 @@
 * My emacs configurations
-** Table of contents							:TOC_3:
+** table of contents						      :TOC_3:
  - [[#my-emacs-configurations][My emacs configurations]]
-     - [[#misc-settings][Misc settings]]
-     - [[#kill-buffer-and-its-windows][Kill buffer and its windows]]
+     - [[#misc-settings][misc settings]]
+     - [[#kill-buffer-and-its-windows][kill buffer and its windows]]
      - [[#todo-dired][TODO dired]]
-     - [[#backup-files][Backup files]]
-     - [[#package-archives-and-emacs-initialization][Package archives and emacs initialization]]
-     - [[#theme][Theme]]
-     - [[#key-bindings][Key Bindings]]
-     - [[#alias][Alias]]
-     - [[#markdown][Markdown]]
-     - [[#magit][Magit]]
+     - [[#backup-files][backup files]]
+     - [[#package-archives-and-emacs-initialization][package archives and emacs initialization]]
+     - [[#theme][theme]]
+     - [[#key-bindings][key Bindings]]
+     - [[#alias][alias]]
+     - [[#markdown][markdown]]
+     - [[#magit][magit]]
      - [[#ido][ido]]
      - [[#projectile][projectile]]
      - [[#expand-region][expand-region]]
-     - [[#autocomplete][Autocomplete]]
-     - [[#flycheck][Flycheck]]
-     - [[#todo-yasnippet][TODO Yasnippet]]
+     - [[#autocomplete][autocomplete]]
+     - [[#flycheck][flycheck]]
+     - [[#todo-yasnippet][TODO yasnippet]]
+     - [[#todo-smex][TODO smex]]
      - [[#org-mode][org-mode]]
-     - [[#programming-language-specific][Programming language-specific]]
+     - [[#programming-language-specific][programming language-specific]]
          - [[#todo-javascript][TODO javascript]]
          - [[#todo-python][TODO python]]
          - [[#todo-go][TODO go]]
-     - [[#on-exit][On exit]]
+     - [[#on-exit][on exit]]
 
-** Misc settings
+** misc settings
 Turn on debugging when entering to the main =init.el= file (to turn
 off at the end).
 
@@ -74,7 +75,7 @@ Enable =erase-buffer=
 (put 'erase-buffer 'disabled nil)
 #+END_SRC
 
-** Kill buffer and its windows
+** kill buffer and its windows
 From this  [[%20http://www.emacswiki.org/emacs/misc-cmds.el][misc-cmds.el]]
 #+BEGIN_SRC emacs-lisp
 (defun kill-buffer-and-its-windows (buffer)
@@ -100,7 +101,7 @@ BUFFER may be either a buffer or its name (a string)."
 #+END_SRC
 
 ** TODO dired
-** Backup files
+** backup files
 This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc1][emacswiki/BackupDirecory]].
 #+BEGIN_SRC
 (setq
@@ -112,7 +113,7 @@ This snippet is copied form [[http://www.emacswiki.org/emacs/BackupDirectory#toc
   kept-old-versions 2
   version-control t)
 #+END_SRC
-** Package archives and emacs initialization
+** package archives and emacs initialization
 Initially, set the automatic package loading to true and require
 the =package= feature.
 
@@ -152,7 +153,7 @@ Install all of =my-packages= and require =use-package=.
 (require 'use-package)
 #+END_SRC
 
-** Theme
+** theme
 My preferred emacs theme is [[https://github.com/crafterm/twilight-emacs][twilight]] wich depends on the =color-theme=
 package.
 
@@ -169,7 +170,7 @@ load the =color-theme-twilight.el= file and enable it.
 (color-theme-twilight)
 #+END_SRC
 
-** Key Bindings
+** key Bindings
 
 | Key        | Command                       |
 |------------+-------------------------------|
@@ -184,7 +185,7 @@ load the =color-theme-twilight.el= file and enable it.
 | =C-n=      | =company-complete=            |
 | =C-x e=    | =erase-buffer=                |
 
-** Alias
+** alias
 
 | Alias | Command              |
 |-------+----------------------|
@@ -194,14 +195,14 @@ load the =color-theme-twilight.el= file and enable it.
 | =wc=  | =whitespace-cleanup= |
 | =fc=  | =flycheck-mode=      |
 
-** Markdown
+** markdown
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t)
 #+END_SRC
 
-** Magit
+** magit
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
@@ -257,7 +258,7 @@ Use [[https://github.com/magnars/expand-region.el][expand-region]] to increase s
   :bind (("C-=" . er/expand-region)))
 #+END_SRC
 
-** Autocomplete
+** autocomplete
 I use [[https://github.com/company-mode/company-mode][company]] for enabling auto-completion.
 
 #+BEGIN_SRC
@@ -274,13 +275,20 @@ I use [[https://github.com/company-mode/company-mode][company]] for enabling aut
   :bind (("C-n" . company-complete)))
 #+END_SRC
 
-** Flycheck
+** flycheck
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t)
 #+END_SRC
 
-** TODO Yasnippet
+** TODO yasnippet
+** TODO smex
+#+BEGIN_SRC emacs-lisp
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'smex))
+#+END_SRC
 ** org-mode
 Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
 #+BEGIN_SRC emacs-lisp
@@ -289,11 +297,11 @@ Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
   :config
   (add-hook 'org-mode-hook 'toc-org-enable))
 #+END_SRC
-** Programming language-specific
+** programming language-specific
 *** TODO javascript
 *** TODO python
 *** TODO go
-** On exit
+** on exit
 Turn off debugging
 
 #+BEGIN_SRC emacs-lisp

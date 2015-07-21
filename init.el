@@ -69,7 +69,7 @@ BUFFER may be either a buffer or its name (a string)."
 (add-hook 'dired-mode-hook
 	  (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
-(setq dired-omit-files "^\\.[^.]\\|\\.pdf$\\|\\.pyc$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$")
 
 
 ;;; install first-class packages
@@ -170,6 +170,12 @@ BUFFER may be either a buffer or its name (a string)."
 	  (append yas-snippet-dirs
 		  '("~/.emacs/snippets")))))
 
+;; smex
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'smex))
+
 ;; org-mode
 (use-package toc-org
   :ensure t
@@ -193,7 +199,7 @@ BUFFER may be either a buffer or its name (a string)."
 		  (flycheck-mode))))
     (setq-default js2-additional-externs '("require" "module"))
     (use-package company-tern
-      :ensure ;TODO:
+      :ensure t
       :config
       (add-to-list 'company-backends 'company-tern))
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
