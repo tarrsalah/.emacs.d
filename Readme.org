@@ -18,11 +18,15 @@
      - [[#flycheck][flycheck]]
      - [[#todo-yasnippet][TODO yasnippet]]
      - [[#todo-smex][TODO smex]]
+     - [[#avy][avy]]
      - [[#org-mode][org-mode]]
      - [[#programming-language-specific][programming language-specific]]
+         - [[#todo-latex][TODO latex]]
          - [[#todo-javascript][TODO javascript]]
          - [[#todo-python][TODO python]]
          - [[#todo-go][TODO go]]
+         - [[#todo-java][TODO java]]
+         - [[#todo-htmlcss][TODO html/css]]
      - [[#on-exit][on exit]]
 
 ** misc settings
@@ -209,7 +213,6 @@ load the =color-theme-twilight.el= file and enable it.
   :ensure t
   :bind (("C-x g". magit-status)))
 #+END_SRC
-
 ** ido
 
 #+BEGIN_SRC emacs-lisp
@@ -289,6 +292,15 @@ I use [[https://github.com/company-mode/company-mode][company]] for enabling aut
   :config
   (global-set-key (kbd "M-x") 'smex))
 #+END_SRC
+
+** avy
+
+#+BEGIN_SRC emacs-lisp
+(use-package avy
+  :ensure t
+  :config
+  (global-set-key (kbd "C-'") 'avy-goto-char-2))
+#+END_SRC
 ** org-mode
 Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
 #+BEGIN_SRC emacs-lisp
@@ -298,9 +310,12 @@ Add [[https://github.com/snosov1/toc-org][toc-org]] to =org-mode=.
   (add-hook 'org-mode-hook 'toc-org-enable))
 #+END_SRC
 ** programming language-specific
+*** TODO latex
 *** TODO javascript
 *** TODO python
 *** TODO go
+*** TODO java
+*** TODO html/css
 ** on exit
 Turn off debugging
 

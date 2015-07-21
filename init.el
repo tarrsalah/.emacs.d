@@ -176,6 +176,12 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (global-set-key (kbd "M-x") 'smex))
 
+;; avy
+(use-package avy
+  :ensure t
+  :config
+  (global-set-key (kbd "C-'") 'avy-goto-char-2))
+
 ;; org-mode
 (use-package toc-org
   :ensure t
