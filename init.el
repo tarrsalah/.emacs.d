@@ -216,6 +216,35 @@ BUFFER may be either a buffer or its name (a string)."
 		  (append flycheck-disabled-checkers
 			  '(json-jsonlist)))))
 
+;; python
+(add-hook 'python-mode-hook
+	  (lambda ()
+	      (progn
+		(pyvenv-mode)
+		(flycheck-mode))))
+
+
+;; go
+
+(use-package go-mode
+  :load-path "~/src/github.com/dominikh/go-mode.el"
+  :config
+  (progn
+    (require 'go-mode-autoloads)
+    (use-package company-go
+      :ensure t
+      :config
+      (progn
+	(set (make-local-variable 'company-backends)
+	     '(company-go))))
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save)))
+
+
+(use-package company-go
+  :ensure t
+  :config
+)
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
