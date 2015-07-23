@@ -180,7 +180,7 @@ BUFFER may be either a buffer or its name (a string)."
 (use-package avy
   :ensure t
   :config
-  (global-set-key (kbd "C-'") 'avy-goto-char-2))
+  (global-set-key (kbd "C-'") 'avy-goto-char))
 
 ;; org-mode
 (use-package toc-org
@@ -223,6 +223,8 @@ BUFFER may be either a buffer or its name (a string)."
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "<escape>") (kbd "C-g"))
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
+(global-set-key (kbd "<M-up>") 'enlarge-window)
+(global-set-key (kbd "<M-down>") 'shrink-window)
 (global-set-key (kbd "C-x e") 'erase-buffer)
 
 ;;; alias
