@@ -22,6 +22,9 @@
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
 
+;; enable a key in dired
+(put 'dired-find-alternate-file 'disabled nil)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq initial-scratch-message ""
