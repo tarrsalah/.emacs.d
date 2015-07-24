@@ -237,7 +237,7 @@ BUFFER may be either a buffer or its name (a string)."
       (progn
 	(set (make-local-variable 'company-backends)
 	     '(company-go))))
-    (setq gofmt-command "goimports")
+    ;; (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)))
 
 
