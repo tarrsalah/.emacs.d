@@ -228,20 +228,21 @@ BUFFER may be either a buffer or its name (a string)."
 
 
 ;; go
+(add-to-list 'load-path "~/src/github.com/dominikh/go-mode.el")
+(require 'go-mode-autoloads)
 
-(use-package go-mode
-  :load-path "~/src/github.com/dominikh/go-mode.el"
-  :config
-  (progn
-    (require 'go-mode-autoloads)
-    (use-package company-go
-      :ensure t
-      :config
-      (progn
-	(set (make-local-variable 'company-backends)
-	     '(company-go))))
-    ;; (setq gofmt-command "goimports")
-    (add-hook 'before-save-hook 'gofmt-before-save)))
+
+; gocode
+(add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs-company")
+(require 'company)
+(require 'company-go)
+
+(add-hook 'go-mode-hook
+	  (lambda ()
+	    (set (make-local-variable 'company-backends) '(company-go))
+	    (company-mode)))
+
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 
 (use-package company-go
