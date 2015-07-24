@@ -25,6 +25,9 @@
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
+;; enable line numbers
+(global-linum-mode t)
+
 ;; enable a key in dired
 (put 'dired-find-alternate-file 'disabled nil)
 
