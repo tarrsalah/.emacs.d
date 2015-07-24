@@ -22,6 +22,9 @@
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
 
+;; enable automatically pair braces and quotes
+(electric-pair-mode 1)
+
 ;; enable a key in dired
 (put 'dired-find-alternate-file 'disabled nil)
 
