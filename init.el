@@ -264,6 +264,7 @@ BUFFER may be either a buffer or its name (a string)."
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
 (global-set-key (kbd "<M-up>") 'enlarge-window)
 (global-set-key (kbd "<M-down>") 'shrink-window)
+(global-set-key (kbd "C-,") 'shell-command)
 (global-set-key (kbd "C-x e") 'erase-buffer)
 
 ;;; alias
