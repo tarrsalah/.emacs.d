@@ -250,11 +250,15 @@ BUFFER may be either a buffer or its name (a string)."
 
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+;; html
 
-(use-package company-go
+(use-package emmet-mode
   :ensure t
   :config
-)
+  (progn
+    (add-hook 'html-mode-hook  'emmet-mode)))
+
+
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
