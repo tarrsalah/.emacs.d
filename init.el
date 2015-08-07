@@ -191,10 +191,25 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char))
 
+;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
   :config
   (exec-path-from-shell-initialize))
+
+;; abbrev
+(define-abbrev-table
+  'global-abbrev-table
+  '(("alpha" "α")
+    ("beta" "β")
+    ("lambda" "λ")
+    ("x8" "×")
+    ("gamma" "γ")
+    ("theta" "θ")
+    ("inf" "∞")
+    ("ar1" "→")
+    ("ar2" "⇒")))
+(abbrev-mode 1)
 
 ;; org-mode
 (use-package toc-org
