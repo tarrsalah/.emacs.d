@@ -191,6 +191,11 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; org-mode
 (use-package toc-org
   :ensure t
@@ -212,12 +217,15 @@ BUFFER may be either a buffer or its name (a string)."
 		  (tern-mode t)
 		  (setq js2-basic-offset 2)
 		  (flycheck-mode))))
+    (js2-mode-hide-warnings-and-errors)
     (setq-default js2-additional-externs '("require" "module"))
     (use-package company-tern
       :ensure t
       :config
       (add-to-list 'company-backends 'company-tern))
+
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
+
     (setq-default flycheck-disabled-checkers
 		  (append flycheck-disabled-checkers
 			  '(javascript-jshint)))
@@ -251,12 +259,57 @@ BUFFER may be either a buffer or its name (a string)."
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; html
-
 (use-package emmet-mode
   :ensure t
   :config
   (progn
     (add-hook 'html-mode-hook  'emmet-mode)))
+
+;; latex
+
+(require 'tex)
+(setq-default TeX-master nil)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq TeX-save-query nil)
+
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(setq TeX-source-correlate-start-server t)
+
+
+(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
+
+;; normal size
+;; (setq font-latex-fontify-sectioning 'color)
+(setq font-latex-fontify-sectioning 1.0)
+
+
+(setq reftex-plug-into-AUCTeX t)
+(setq Tex-Source-Correlate t)
+(setq TeX-output-view-style
+      (quote
+       (("^pdf$" "." "evince -f %o")
+	("^html?$" "." "iceweasel %o"))))
+
+
+(add-hook 'text-mode-hook
+	  (lambda ()
+	    (progn
+	      ;; (flyspell-mode 1)
+	      (setq ispell-dictionary "francais")
+	      (setq TeX-PDF-mode t))))
+
+(defalias  'fsb 'flyspell-buffer)
+(defalias  'fsm 'flyspell-mode)
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (TeX-fold-mode 1)))
+
 
 
 ;;; key bindings
