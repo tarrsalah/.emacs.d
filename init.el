@@ -25,6 +25,8 @@
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
+(electric-indent-mode 0)
+
 ;; enable line numbers
 (global-linum-mode t)
 
