@@ -6,11 +6,11 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa-stable" . "http://stable.melpa.org/packages/"))
+             '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
-	     '("elpa" . "http://tromey.com/elpa/"))
+             '("elpa" . "http://tromey.com/elpa/"))
 
 (package-initialize)
 
@@ -25,6 +25,7 @@
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
+;; disable electric indentation mode
 (electric-indent-mode 0)
 
 ;; enable line numbers
@@ -64,15 +65,15 @@ BUFFER may be either a buffer or its name (a string)."
   (setq buffer  (get-buffer buffer))
   (if (buffer-live-p buffer)            ; Kill live buffer only.
       (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
-	(when (and (buffer-modified-p buffer)
-		   (fboundp '1on1-flash-ding-minibuffer-frame))
-	  (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
-	(when (kill-buffer buffer)      ; Only delete windows if buffer killed.
-	  (dolist (win  wins)           ; (User might keep buffer if modified.)
-	    (when (window-live-p win)
-	      ;; Ignore error, in particular,
-	      ;; "Attempt to delete the sole visible or iconified frame".
-	      (condition-case nil (delete-window win) (error nil))))))
+    (when (and (buffer-modified-p buffer)
+           (fboundp '1on1-flash-ding-minibuffer-frame))
+      (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
+    (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
+      (dolist (win  wins)           ; (User might keep buffer if modified.)
+        (when (window-live-p win)
+          ;; Ignore error, in particular,
+          ;; "Attempt to delete the sole visible or iconified frame".
+          (condition-case nil (delete-window win) (error nil))))))
     (when (interactive-p)
       (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
@@ -80,27 +81,27 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;;; dired
 (add-hook 'dired-load-hook
-	  '(lambda () (require 'dired-x)))
+          '(lambda () (require 'dired-x)))
 (add-hook 'dired-mode-hook
-	  (lambda () (dired-hide-details-mode 1)))
+          (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$")
 
 
 ;;; install first-class packages
 (defvar my-packages
-	'(use-package))
+    '(use-package))
 
 (dolist (p my-packages)
-	(when (not (package-installed-p p))
-		(package-install p)))
+    (when (not (package-installed-p p))
+        (package-install p)))
 
 ;;; use-package
 (require 'use-package)
 
 ;;; twilight color theme
 (use-package color-theme
-	:ensure t)
+    :ensure t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-file "~/.emacs.d/themes/color-theme-twilight.el")
@@ -108,12 +109,12 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; markdown
 (use-package markdown-mode
-	:ensure t)
+    :ensure t)
 
 ;; magit
 (use-package magit
-	:ensure t
-	:bind (("C-x g". magit-status)))
+  :ensure t
+  :bind (("C-x g". magit-status)))
 
 ;;; org-mode
 (setq org-support-shift-select t)
@@ -126,10 +127,10 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (progn
     (setq ido-enable-flex-matching t
-	  ido-everywhere t
-	  ido-file-extensions-order my/ido-order))
+      ido-everywhere t
+      ido-file-extensions-order my/ido-order))
   :bind (("C-x C-b" . ibuffer)
-	 ("C-b" . switch-to-buffer)))
+     ("C-b" . switch-to-buffer)))
 
 ;;; expand region
 (use-package expand-region
@@ -182,8 +183,8 @@ BUFFER may be either a buffer or its name (a string)."
   (progn
     (yas-global-mode 1)
     (setq yas-snippet-dirs
-	  (append yas-snippet-dirs
-		  '("~/.emacs/snippets")))))
+          (append yas-snippet-dirs
+                  '("~/.emacs/snippets")))))
 
 ;; smex
 (use-package smex
@@ -233,11 +234,11 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (progn
     (add-hook 'js2-mode-hook
-	      (lambda()
-		(progn
-		  (tern-mode t)
-		  (setq js2-basic-offset 2)
-		  (flycheck-mode))))
+              (lambda()
+        (progn
+          (tern-mode t)
+          (setq js2-basic-offset 2)
+          (flycheck-mode))))
     (js2-mode-hide-warnings-and-errors)
     (setq-default js2-additional-externs '("require" "module"))
     (use-package company-tern
@@ -248,18 +249,18 @@ BUFFER may be either a buffer or its name (a string)."
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
 
     (setq-default flycheck-disabled-checkers
-		  (append flycheck-disabled-checkers
-			  '(javascript-jshint)))
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint)))
     (setq-default flycheck-disabled-checkers
-		  (append flycheck-disabled-checkers
-			  '(json-jsonlist)))))
+                  (append flycheck-disabled-checkers
+                          '(json-jsonlist)))))
 
 ;; python
 (add-hook 'python-mode-hook
-	  (lambda ()
-	      (progn
-		(pyvenv-mode)
-		(flycheck-mode))))
+      (lambda ()
+          (progn
+        (pyvenv-mode)
+        (flycheck-mode))))
 
 
 ;; go
@@ -273,9 +274,9 @@ BUFFER may be either a buffer or its name (a string)."
 (require 'company-go)
 
 (add-hook 'go-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'company-backends) '(company-go))
-	    (company-mode)))
+      (lambda ()
+        (set (make-local-variable 'company-backends) '(company-go))
+        (company-mode)))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -315,21 +316,22 @@ BUFFER may be either a buffer or its name (a string)."
 (setq TeX-output-view-style
       (quote
        (("^pdf$" "." "evince -f %o")
-	("^html?$" "." "iceweasel %o"))))
+    ("^html?$" "." "iceweasel %o"))))
 
 
 (add-hook 'text-mode-hook
-	  (lambda ()
-	    (progn
-	      ;; (flyspell-mode 1)
-	      (setq ispell-dictionary "francais")
-	      (setq TeX-PDF-mode t))))
+      (lambda ()
+        (progn
+          ;; (flyspell-mode 1)
+          (setq ispell-dictionary "francais")
+          (setq TeX-PDF-mode t))))
 
 (defalias  'fsb 'flyspell-buffer)
 (defalias  'fsm 'flyspell-mode)
 
-(add-hook 'LaTeX-mode-hook (lambda ()
-			     (TeX-fold-mode 1)))
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (TeX-fold-mode 1)))
 
 
 
