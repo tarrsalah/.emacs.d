@@ -51,6 +51,10 @@
 ;; enable erace buffer
 (put 'erase-buffer 'disabled nil)
 
+;; 4 spaces for tab
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+
 ;; kill the buffer's window when killing the buffer itself
 ;; http://www.emacswiki.org/emacs/misc-cmds.el
 (defun kill-buffer-and-its-windows (buffer)
