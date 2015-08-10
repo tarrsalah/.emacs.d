@@ -85,7 +85,7 @@ BUFFER may be either a buffer or its name (a string)."
 (add-hook 'dired-mode-hook
           (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
 
 ;;; install first-class packages
@@ -357,4 +357,5 @@ BUFFER may be either a buffer or its name (a string)."
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
+
 ;;; init.el ends here
