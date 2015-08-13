@@ -56,6 +56,14 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+;; colorize the compilation buffer
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; kill the buffer's window when killing the buffer itself
 ;; http://www.emacswiki.org/emacs/misc-cmds.el
 (defun kill-buffer-and-its-windows (buffer)
