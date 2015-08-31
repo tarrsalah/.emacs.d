@@ -87,6 +87,21 @@ BUFFER may be either a buffer or its name (a string)."
 
 (substitute-key-definition 'kill-buffer 'kill-buffer-and-its-windows global-map)
 
+;;; put the buffer from the selected window in next window, and vice versa
+(defun swap-buffers-in-windows ()
+  "Put the buffer from the selected window in next window, and vice versa"
+  (interactive)
+  (let* ((this (selected-window))
+         (other (next-window))
+         (this-buffer (window-buffer this))
+         (other-buffer (window-buffer other)))
+    (set-window-buffer other this-buffer)
+    (set-window-buffer this other-buffer)
+    )
+  )
+
+(global-set-key (kbd "C-x <down>") 'swap-buffers-in-windows)
+
 ;;; dired
 (add-hook 'dired-load-hook
           '(lambda () (require 'dired-x)))
@@ -223,6 +238,7 @@ BUFFER may be either a buffer or its name (a string)."
     ("theta" "θ")
     ("inf" "∞")
     ("ar1" "→")
+    ("use" "'use strict';")
     ("ar2" "⇒")))
 (abbrev-mode 1)
 
@@ -245,6 +261,7 @@ BUFFER may be either a buffer or its name (a string)."
               (lambda()
         (progn
           (tern-mode t)
+          (abbrev-mode t)
           (setq js2-basic-offset 2)
           (flycheck-mode))))
     (js2-mode-hide-warnings-and-errors)
