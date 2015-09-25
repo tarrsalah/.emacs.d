@@ -110,6 +110,9 @@ BUFFER may be either a buffer or its name (a string)."
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
+;; set font size
+(set-face-attribute 'default nil :height 120)
+
 
 ;;; install first-class packages
 (defvar my-packages
@@ -257,6 +260,12 @@ BUFFER may be either a buffer or its name (a string)."
     (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode)))
   :config
   (progn
+    (use-package js2-refactor
+      :ensure t
+      :config
+      (progn
+        (add-hook 'js2-mode-hook #'js2-refactor-mode)
+        (js2r-add-keybindings-with-prefix "C-c C-m")))
     (add-hook 'js2-mode-hook
               (lambda()
         (progn
