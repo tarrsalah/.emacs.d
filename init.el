@@ -224,6 +224,12 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (global-set-key (kbd "C-'") 'avy-goto-char))
 
+;; ace-window
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x o") 'ace-window))
+
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
