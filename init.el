@@ -201,17 +201,6 @@ BUFFER may be either a buffer or its name (a string)."
   :diminish flycheck-mode
   :ensure t)
 
-;; yasnippet
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :config
-  (progn
-    (yas-global-mode 1)
-    (setq yas-snippet-dirs
-          (append yas-snippet-dirs
-                  '("~/.emacs/snippets")))))
-
 ;; smex
 (use-package smex
   :ensure t
