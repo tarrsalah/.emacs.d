@@ -363,6 +363,11 @@ BUFFER may be either a buffer or its name (a string)."
             (TeX-fold-mode 1)))
 
 
+;; yasnippet
+(add-to-list 'load-path
+              "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas/global-mode 1)
 
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)

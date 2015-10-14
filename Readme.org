@@ -1,33 +1,33 @@
 * My emacs configurations
-** table of contents						      :TOC_3:
+** table of contents                              :TOC_3:
  - [[#my-emacs-configurations][My emacs configurations]]
-     - [[#misc-settings][misc settings]]
-     - [[#kill-buffer-and-its-windows][kill buffer and its windows]]
-     - [[#todo-dired][TODO dired]]
-     - [[#backup-files][backup files]]
-     - [[#package-archives-and-emacs-initialization][package archives and emacs initialization]]
-     - [[#theme][theme]]
-     - [[#key-bindings][key Bindings]]
-     - [[#alias][alias]]
-     - [[#markdown][markdown]]
-     - [[#magit][magit]]
-     - [[#ido][ido]]
-     - [[#projectile][projectile]]
-     - [[#expand-region][expand-region]]
-     - [[#autocomplete][autocomplete]]
-     - [[#flycheck][flycheck]]
-     - [[#todo-yasnippet][TODO yasnippet]]
-     - [[#todo-smex][TODO smex]]
-     - [[#avy][avy]]
-     - [[#org-mode][org-mode]]
-     - [[#programming-language-specific][programming language-specific]]
-         - [[#todo-latex][TODO latex]]
-         - [[#todo-javascript][TODO javascript]]
-         - [[#todo-python][TODO python]]
-         - [[#todo-go][TODO go]]
-         - [[#todo-java][TODO java]]
-         - [[#todo-htmlcss][TODO html/css]]
-     - [[#on-exit][on exit]]
+   - [[#misc-settings][misc settings]]
+   - [[#kill-buffer-and-its-windows][kill buffer and its windows]]
+   - [[#dired][dired]]
+   - [[#backup-files][backup files]]
+   - [[#package-archives-and-emacs-initialization][package archives and emacs initialization]]
+   - [[#theme][theme]]
+   - [[#key-bindings][key Bindings]]
+   - [[#alias][alias]]
+   - [[#markdown][markdown]]
+   - [[#magit][magit]]
+   - [[#ido][ido]]
+   - [[#projectile][projectile]]
+   - [[#expand-region][expand-region]]
+   - [[#autocomplete][autocomplete]]
+   - [[#flycheck][flycheck]]
+   - [[#yasnippet][yasnippet]]
+   - [[#smex][smex]]
+   - [[#avy][avy]]
+   - [[#org-mode][org-mode]]
+   - [[#programming-language-specific][programming language-specific]]
+     - [[#latex][latex]]
+     - [[#javascript][javascript]]
+     - [[#python][python]]
+     - [[#go][go]]
+     - [[#java][java]]
+     - [[#htmlcss][html/css]]
+   - [[#on-exit][on exit]]
 
 ** misc settings
 Turn on debugging when entering to the main =init.el= file (to turn
@@ -71,7 +71,7 @@ Change "yes or no" to "y or n"
 Empty scratch buffer
 #+BEGIN_SRC emacs-lisp
 (setq initial-scratch-message ""
-	 inhibit-startup-message t)
+     inhibit-startup-message t)
 #+END_SRC
 
 Enable =erase-buffer=
@@ -89,15 +89,15 @@ BUFFER may be either a buffer or its name (a string)."
   (setq buffer  (get-buffer buffer))
   (if (buffer-live-p buffer)            ; Kill live buffer only.
       (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
-	(when (and (buffer-modified-p buffer)
-		   (fboundp '1on1-flash-ding-minibuffer-frame))
-	  (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
-	(when (kill-buffer buffer)      ; Only delete windows if buffer killed.
-	  (dolist (win  wins)           ; (User might keep buffer if modified.)
-	    (when (window-live-p win)
-	      ;; Ignore error, in particular,
-	      ;; "Attempt to delete the sole visible or iconified frame".
-	      (condition-case nil (delete-window win) (error nil))))))
+    (when (and (buffer-modified-p buffer)
+           (fboundp '1on1-flash-ding-minibuffer-frame))
+      (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
+    (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
+      (dolist (win  wins)           ; (User might keep buffer if modified.)
+        (when (window-live-p win)
+          ;; Ignore error, in particular,
+          ;; "Attempt to delete the sole visible or iconified frame".
+          (condition-case nil (delete-window win) (error nil))))))
     (when (interactive-p)
       (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
@@ -130,11 +130,11 @@ Add [[http://melpa-stable.milkbox.net/packages/][melpa-stable]], [[http://melpa.
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives
-		    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+            '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives
-		    '("melpa" . "http://melpa.milkbox.net/packages/"))
+            '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
-		    '("elpa" . "http://tromey.com/elpa/"))
+            '("elpa" . "http://tromey.com/elpa/"))
 #+END_SRC
 
 I use [[https://github.com/jwiegley/use-package][use-package]] for install and configure all my third-party
@@ -214,7 +214,6 @@ load the =color-theme-twilight.el= file and enable it.
   :bind (("C-x g". magit-status)))
 #+END_SRC
 ** ido
-
 #+BEGIN_SRC emacs-lisp
 (setq my/ido-order '(".tex" ".go" ".js" ".el" ".py"))
 
@@ -222,13 +221,12 @@ load the =color-theme-twilight.el= file and enable it.
   :init (ido-mode 1)
   :config
   (progn
-	(setq ido-enable-flex-matching t
-	  ido-everywhere t
-	  ido-file-extensions-order my/ido-order))
+    (setq ido-enable-flex-matching t
+      ido-everywhere t
+      ido-file-extensions-order my/ido-order))
   :bind (("C-x C-b" . ibuffer)
-	 ("C-b" . switch-to-buffer)))
+     ("C-b" . switch-to-buffer)))
 #+END_SRC
-
 ** projectile
 I use [[https://github.com/grizzl/grizzl][grizzl]] as a completion option for projectile.
 
@@ -284,7 +282,16 @@ I use [[https://github.com/company-mode/company-mode][company]] for enabling aut
   :ensure t)
 #+END_SRC
 
-** TODO yasnippet
+** yasnippet
+   git clone the yasnippet repo in ~/.emacs.d/plugins.
+
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'load-path
+                 "~/.emacs.d/plugins/yasnippet")
+   (require 'yasnippet)
+   (yas/global-mode 1)
+   #+END_SRC
+
 ** TODO smex
 #+BEGIN_SRC emacs-lisp
 (use-package smex

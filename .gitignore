@@ -6,3 +6,6 @@ auto-save-list
 /ac-comphist.dat
 /ede-projects.el
 /abbrev_defs
+/ido.last
+/plugins
+/smex-items
