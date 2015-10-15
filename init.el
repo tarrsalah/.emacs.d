@@ -365,12 +365,17 @@ BUFFER may be either a buffer or its name (a string)."
           (lambda ()
             (TeX-fold-mode 1)))
 
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (push
+    '("Latexmk" "latexmk -bibtex -pdf %s" TeX-run-TeX nil t
+      :help "Run Latexmk on file")
+    TeX-command-list)))
 
 ;; yasnippet
 (add-to-list 'load-path
               "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
-(yas/global-mode 1)
+(yas/minor-mode 1)
 
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
