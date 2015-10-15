@@ -307,6 +307,9 @@ BUFFER may be either a buffer or its name (a string)."
         (set (make-local-variable 'company-backends) '(company-go))
         (company-mode)))
 
+(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(require 'golint)
+
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; html
