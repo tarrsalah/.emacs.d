@@ -111,7 +111,7 @@ BUFFER may be either a buffer or its name (a string)."
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
 ;; set font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
 
 
 ;;; install first-class packages
