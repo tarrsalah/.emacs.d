@@ -112,7 +112,7 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; set font size
 (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
-
+(setq-default line-spacing 3)
 
 ;;; install first-class packages
 (defvar my-packages
