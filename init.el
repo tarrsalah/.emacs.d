@@ -15,7 +15,6 @@
 (package-initialize)
 
 ;;; misc settings
-(menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (show-paren-mode 1)
@@ -111,7 +110,7 @@ BUFFER may be either a buffer or its name (a string)."
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 130)
 (setq-default line-spacing 3)
 
 ;;; install first-class packages
@@ -402,3 +401,17 @@ BUFFER may be either a buffer or its name (a string)."
 (setq debug-on-quit nil)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(writeroom-border-width 200)
+ '(writeroom-maximize-window nil)
+ '(writeroom-width 80))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
