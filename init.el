@@ -310,7 +310,6 @@ BUFFER may be either a buffer or its name (a string)."
 (require 'golint)
 
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'before-save-hook 'go-remove-unused-imports)
 
 ;; html
 (use-package emmet-mode
