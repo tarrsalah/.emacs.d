@@ -113,6 +113,13 @@ BUFFER may be either a buffer or its name (a string)."
 (set-face-attribute 'default nil :family "Ubuntu Mono" :height 130)
 (setq-default line-spacing 3)
 
+;; arabic font, form:
+;; "http://stackoverflow.com/questions/11012627/emacs-font-for-western-and-other-like-rtl"
+(set-fontset-font
+   "fontset-default"
+   (cons (decode-char 'ucs #x0600) (decode-char 'ucs #x06ff))
+   "DejaVu Sans Mono")
+
 ;;; install first-class packages
 (defvar my-packages
     '(use-package))
