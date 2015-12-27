@@ -139,6 +139,12 @@ BUFFER may be either a buffer or its name (a string)."
 (load-file "~/.emacs.d/themes/color-theme-twilight.el")
 (color-theme-twilight)
 
+;; super-save
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-initialize))
+
 ;; markdown
 (use-package markdown-mode
     :ensure t)
@@ -302,6 +308,9 @@ BUFFER may be either a buffer or its name (a string)."
 (add-to-list 'load-path "~/src/github.com/dominikh/go-mode.el")
 (require 'go-mode-autoloads)
 
+;; geiser
+(use-package geiser
+  :ensure t)
 
 ; gocode
 (add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs-company")
@@ -326,7 +335,6 @@ BUFFER may be either a buffer or its name (a string)."
     (add-hook 'html-mode-hook  'emmet-mode)))
 
 ;; latex
-
 (require 'tex)
 (setq-default TeX-master nil)
 (setq TeX-auto-save t)
