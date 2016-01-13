@@ -303,28 +303,33 @@ BUFFER may be either a buffer or its name (a string)."
         (pyvenv-mode)
         (flycheck-mode))))
 
-
-;; go
-(add-to-list 'load-path "~/src/github.com/dominikh/go-mode.el")
-(require 'go-mode-autoloads)
-
 ;; geiser
 (use-package geiser
   :ensure t)
+
+;;;  golang
+
+;; go-mode
+(add-to-list 'load-path "~/src/github.com/dominikh/go-mode.el")
+(require 'go-mode-autoloads)
 
 ; gocode
 (add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs-company")
 (require 'company)
 (require 'company-go)
-
 (add-hook 'go-mode-hook
       (lambda ()
         (set (make-local-variable 'company-backends) '(company-go))
         (company-mode)))
 
-(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+;; golint
+(add-to-list 'load-path
+             (concat (getenv "GOPATH")
+                     "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
 
+;; goimports
+(setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; html
