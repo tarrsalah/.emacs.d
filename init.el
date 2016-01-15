@@ -329,7 +329,7 @@ BUFFER may be either a buffer or its name (a string)."
 (require 'golint)
 
 ;; goimports
-(setq gofmt-command "goimports")
+;; (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; html
