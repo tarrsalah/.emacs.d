@@ -359,17 +359,18 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; php
 (use-package php-mode
-  :ensure t)
-
-(use-package ac-php
   :ensure t
   :config
-  (progn
-    (add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'ac-php-company)
-             (company-mode t)
-             (add-to-list 'company-backends 'company-ac-php-backend)))))
+  (use-package ac-php
+    :ensure t
+    :config
+    (progn
+      (add-hook 'php-mode-hook
+                '(lambda ()
+                   (require 'ac-php-company)
+                   (company-mode t)
+                   (add-to-list 'company-backends 'company-ac-php-backend))))))
+
 
 
 ;; normal size
