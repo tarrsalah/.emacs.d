@@ -357,6 +357,21 @@ BUFFER may be either a buffer or its name (a string)."
 (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
 
+;; php
+(use-package php-mode
+  :ensure t)
+
+(use-package ac-php
+  :ensure t
+  :config
+  (progn
+    (add-hook 'php-mode-hook
+          '(lambda ()
+             (require 'ac-php-company)
+             (company-mode t)
+             (add-to-list 'company-backends 'company-ac-php-backend)))))
+
+
 ;; normal size
 ;; (setq font-latex-fontify-sectioning 'color)
 (setq font-latex-fontify-sectioning 1.0)
