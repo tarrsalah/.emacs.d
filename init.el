@@ -40,13 +40,13 @@
 
 ;; from http://www.emacswiki.org/emacs/BackupDirectory#toc1
 (setq
-   backup-by-copying t
-   backup-directory-alist
-    '(("." . "~/.saves"))
-   delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)
+ backup-by-copying t
+ backup-directory-alist
+ '(("." . "~/.saves"))
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
 
 ;; enable erace buffer
 (put 'erase-buffer 'disabled nil)
@@ -72,15 +72,15 @@ BUFFER may be either a buffer or its name (a string)."
   (setq buffer  (get-buffer buffer))
   (if (buffer-live-p buffer)            ; Kill live buffer only.
       (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
-    (when (and (buffer-modified-p buffer)
-           (fboundp '1on1-flash-ding-minibuffer-frame))
-      (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
-    (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
-      (dolist (win  wins)           ; (User might keep buffer if modified.)
-        (when (window-live-p win)
-          ;; Ignore error, in particular,
-          ;; "Attempt to delete the sole visible or iconified frame".
-          (condition-case nil (delete-window win) (error nil))))))
+        (when (and (buffer-modified-p buffer)
+                   (fboundp '1on1-flash-ding-minibuffer-frame))
+          (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
+        (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
+          (dolist (win  wins)           ; (User might keep buffer if modified.)
+            (when (window-live-p win)
+              ;; Ignore error, in particular,
+              ;; "Attempt to delete the sole visible or iconified frame".
+              (condition-case nil (delete-window win) (error nil))))))
     (when (interactive-p)
       (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
@@ -116,24 +116,24 @@ BUFFER may be either a buffer or its name (a string)."
 ;; arabic font, form:
 ;; "http://stackoverflow.com/questions/11012627/emacs-font-for-western-and-other-like-rtl"
 (set-fontset-font
-   "fontset-default"
-   (cons (decode-char 'ucs #x0600) (decode-char 'ucs #x06ff))
-   "DejaVu Sans Mono")
+ "fontset-default"
+ (cons (decode-char 'ucs #x0600) (decode-char 'ucs #x06ff))
+ "DejaVu Sans Mono")
 
 ;;; install first-class packages
 (defvar my-packages
-    '(use-package))
+  '(use-package auctex))
 
 (dolist (p my-packages)
-    (when (not (package-installed-p p))
-        (package-install p)))
+  (when (not (package-installed-p p))
+    (package-install p)))
 
 ;;; use-package
 (require 'use-package)
 
 ;;; twilight color theme
 (use-package color-theme
-    :ensure t)
+  :ensure t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-file "~/.emacs.d/themes/color-theme-twilight.el")
@@ -147,7 +147,7 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; markdown
 (use-package markdown-mode
-    :ensure t)
+  :ensure t)
 
 ;; magit
 (use-package magit
@@ -165,10 +165,10 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (progn
     (setq ido-enable-flex-matching t
-      ido-everywhere t
-      ido-file-extensions-order my/ido-order))
+          ido-everywhere t
+          ido-file-extensions-order my/ido-order))
   :bind (("C-x C-b" . ibuffer)
-     ("C-b" . switch-to-buffer)))
+         ("C-b" . switch-to-buffer)))
 
 ;;; expand region
 (use-package expand-region
@@ -275,11 +275,11 @@ BUFFER may be either a buffer or its name (a string)."
         (js2r-add-keybindings-with-prefix "C-c C-m")))
     (add-hook 'js2-mode-hook
               (lambda()
-        (progn
-          (tern-mode t)
-          (abbrev-mode t)
-          (setq js2-basic-offset 2)
-          (flycheck-mode))))
+                (progn
+                  (tern-mode t)
+                  (abbrev-mode t)
+                  (setq js2-basic-offset 2)
+                  (flycheck-mode))))
     (js2-mode-hide-warnings-and-errors)
     (setq-default js2-additional-externs '("require" "module"))
     (use-package company-tern
@@ -298,10 +298,10 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;; python
 (add-hook 'python-mode-hook
-      (lambda ()
-          (progn
-        (pyvenv-mode)
-        (flycheck-mode))))
+          (lambda ()
+            (progn
+              (pyvenv-mode)
+              (flycheck-mode))))
 
 ;; geiser
 (use-package geiser
@@ -313,14 +313,14 @@ BUFFER may be either a buffer or its name (a string)."
 (add-to-list 'load-path "~/src/github.com/dominikh/go-mode.el")
 (require 'go-mode-autoloads)
 
-; gocode
+                                        ; gocode
 (add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs-company")
 (require 'company)
 (require 'company-go)
 (add-hook 'go-mode-hook
-      (lambda ()
-        (set (make-local-variable 'company-backends) '(company-go))
-        (company-mode)))
+          (lambda ()
+            (set (make-local-variable 'company-backends) '(company-go))
+            (company-mode)))
 
 ;; golint
 (add-to-list 'load-path
@@ -357,7 +357,7 @@ BUFFER may be either a buffer or its name (a string)."
 (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
 
-;; php
+;;; php
 (use-package php-mode
   :ensure t
   :config
@@ -365,14 +365,21 @@ BUFFER may be either a buffer or its name (a string)."
     :ensure t
     :config
     (progn
-      (add-hook 'php-mode-hook
-                '(lambda ()
-                   (require 'ac-php-company)
-                   (company-mode t)
-                   (add-to-list 'company-backends 'company-ac-php-backend))))))
+      (add-hook
+       'php-mode-hook
+       '(lambda ()
+          (require 'ac-php-company)
+          (company-mode t)
+          (add-to-list 'company-backends 'company-ac-php-backend))))))
 
 
+;;; docker
+(use-package dockerfile-mode
+  :ensure t)
 
+;;; nginx
+(use-package nginx-mode
+  :ensure t)
 ;; normal size
 ;; (setq font-latex-fontify-sectioning 'color)
 (setq font-latex-fontify-sectioning 1.0)
@@ -383,15 +390,15 @@ BUFFER may be either a buffer or its name (a string)."
 (setq TeX-output-view-style
       (quote
        (("^pdf$" "." "evince -f %o")
-    ("^html?$" "." "iceweasel %o"))))
+        ("^html?$" "." "iceweasel %o"))))
 
 
 (add-hook 'text-mode-hook
-      (lambda ()
-        (progn
-          ;; (flyspell-mode 1)
-          (setq ispell-dictionary "francais")
-          (setq TeX-PDF-mode t))))
+          (lambda ()
+            (progn
+              ;; (flyspell-mode 1)
+              (setq ispell-dictionary "francais")
+              (setq TeX-PDF-mode t))))
 
 (defalias  'fsb 'flyspell-buffer)
 (defalias  'fsm 'flyspell-mode)
@@ -400,15 +407,16 @@ BUFFER may be either a buffer or its name (a string)."
           (lambda ()
             (TeX-fold-mode 1)))
 
-(add-hook 'LaTeX-mode-hook (lambda ()
-  (push
-    '("Latexmk" "latexmk -bibtex -pdf %s" TeX-run-TeX nil t
-      :help "Run Latexmk on file")
-    TeX-command-list)))
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (push
+             '("Latexmk" "latexmk -bibtex -pdf %s" TeX-run-TeX nil t
+               :help "Run Latexmk on file")
+             TeX-command-list)))
 
 ;; yasnippet
 (add-to-list 'load-path
-              "~/.emacs.d/plugins/yasnippet")
+             "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
 (yas/minor-mode 1)
 
