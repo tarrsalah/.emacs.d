@@ -377,6 +377,9 @@ BUFFER may be either a buffer or its name (a string)."
 (use-package dockerfile-mode
   :ensure t)
 
+(use-package restclient
+  :ensure t)
+
 ;;; nginx
 (use-package nginx-mode
   :ensure t)
