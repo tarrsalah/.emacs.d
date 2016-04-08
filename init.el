@@ -248,7 +248,6 @@ BUFFER may be either a buffer or its name (a string)."
     ("theta" "θ")
     ("inf" "∞")
     ("ar1" "→")
-    ("use" "'use strict';")
     ("ar2" "⇒")))
 (abbrev-mode 1)
 
