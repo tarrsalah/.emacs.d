@@ -361,10 +361,10 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (progn
     (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-    (add-hook 'php-mode-hook (lambda() (flycheck-mode)))
-    (add-hook 'php-mode-hook (lambda ()
-                               (flycheck-select-checker 'php)
-                               (c-set-style "psr2")))
+    (add-hook 'php-mode-hook
+              (lambda ()
+                (flycheck-mode)
+                (setq flycheck-phpcs-standard "PSR2")))
     (use-package ac-php
       :ensure t
       :config
