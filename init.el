@@ -156,6 +156,7 @@ BUFFER may be either a buffer or its name (a string)."
 
 ;;; org-mode
 (setq org-support-shift-select t)
+(setq org-hide-leading-stars t)
 
 ;; ido
 (setq my/ido-order '(".tex" ".go" ".js" ".el" ".py"))
