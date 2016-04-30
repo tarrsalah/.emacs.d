@@ -428,6 +428,14 @@ BUFFER may be either a buffer or its name (a string)."
 (require 'yasnippet)
 (yas/minor-mode 1)
 
+(use-package less-css-mode
+  :ensure t)
+
+(use-package rainbow-mode
+  :ensure t
+  :config
+    (add-hook 'css-mode-hook  (lambda () (rainbow-mode 1))))
+
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
