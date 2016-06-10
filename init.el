@@ -3,15 +3,13 @@
 (setq debug-on-quit t)
 
 (setq package-enable-at-startup nil)
+
 (require 'package)
-
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-
+             '("melpa" . "https://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;;; misc settings
@@ -120,11 +118,8 @@ BUFFER may be either a buffer or its name (a string)."
  (cons (decode-char 'ucs #x0600) (decode-char 'ucs #x06ff))
  "DejaVu Sans Mono")
 
-;;; install first-class packages
-(defvar my-packages
-  '(use-package auctex))
 
-(dolist (p my-packages)
+(dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -433,27 +428,6 @@ BUFFER may be either a buffer or its name (a string)."
 (defalias 'fc 'flycheck-mode)
 (defalias 'wc 'whitespace-cleanup)
 
-;;; trun of debugging
-(setq debug-on-error nil)
-(setq debug-on-quit nil)
-
-;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(writeroom-border-width 200)
- '(writeroom-maximize-window nil)
- '(writeroom-width 80))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
-
-
 (require 'thingatpt)
 
 (defun thing-at-point-goto-end-of-integer ()
@@ -520,3 +494,21 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (global-set-key (kbd "C-c C-<up>") 'increment-integer-at-point)
 (global-set-key (kbd "C-c C-<down>") 'decrement-integer-at-point)
+
+;;; trun of debugging
+(setq debug-on-error nil)
+(setq debug-on-quit nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (use-package toc-org super-save smex restclient rainbow-mode rainbow-delimiters projectile nginx-mode markdown-mode magit less-css-mode js2-refactor grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern color-theme auctex ace-window ac-php))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
