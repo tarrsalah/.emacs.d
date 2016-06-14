@@ -203,6 +203,7 @@ BUFFER may be either a buffer or its name (a string)."
     (setq projectile-enable-caching t)
     (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
+
 ;; flycheck
 (use-package flycheck
   :diminish flycheck-mode
@@ -330,23 +331,10 @@ BUFFER may be either a buffer or its name (a string)."
 (use-package php-mode
   :ensure t
   :config
-  (progn
-    (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-    (add-hook 'php-mode-hook
-              (lambda ()
-                (flycheck-mode)
-                (setq flycheck-phpcs-standard "PSR2")))
-    (use-package ac-php
-      :ensure t
-      :config
-      (progn
-        (add-hook
-         'php-mode-hook
-         '(lambda ()
-            (require 'ac-php-company)
-            (company-mode t)
-            (add-to-list 'company-backends 'company-ac-php-backend)))))))
-
+  (add-hook 'php-mode-hook
+            (lambda()
+              (php-enable-psr2-coding-style)
+              (flycheck-mode))))
 
 ;;; docker
 (use-package dockerfile-mode
@@ -404,7 +392,7 @@ BUFFER may be either a buffer or its name (a string)."
 (use-package rainbow-mode
   :ensure t
   :config
-    (add-hook 'css-mode-hook  (lambda () (rainbow-mode 1))))
+  (add-hook 'css-mode-hook  (lambda () (rainbow-mode 1))))
 
 (use-package rainbow-delimiters
   :ensure t)
