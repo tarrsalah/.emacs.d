@@ -18,7 +18,7 @@
 (show-paren-mode 1)
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
-
+(menu-bar-mode 0)
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
@@ -289,13 +289,24 @@
 ;;; php
 (use-package php-mode
   :ensure t
+  :bind ("C->" . cmack/php-quick-arrow)
   :config
+  (defun cmack/php-quick-arrow ()
+    "Inserts -> at point"
+    (interactive)
+    (insert "->"))
+
   (add-hook 'php-mode-hook
             (lambda()
               (php-enable-psr2-coding-style)
-              (flycheck-mode))))
+              (flycheck-mode)))
+  (use-package ac-php
+    :ensure t
+    :config
+    (load-file "~/.emacs.d/legacy/company-php.el")
+    (add-to-list 'company-backends 'company-ac-php-backend )))
 
-;;; docker
+;; docker
 (use-package dockerfile-mode
   :ensure t)
 
