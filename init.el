@@ -59,45 +59,8 @@
   (toggle-read-only)
   (ansi-color-apply-on-region (point-min) (point-max))
   (toggle-read-only))
+
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
-;; kill the buffer's window when killing the buffer itself
-;; http://www.emacswiki.org/emacs/misc-cmds.el
-(defun kill-buffer-and-its-windows (buffer)
-  "Kill BUFFER and delete its windows.  Default is `current-buffer'.
-BUFFER may be either a buffer or its name (a string)."
-  (interactive (list (read-buffer "Kill buffer: " (current-buffer) 'existing)))
-  (setq buffer  (get-buffer buffer))
-  (if (buffer-live-p buffer)            ; Kill live buffer only.
-      (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
-        (when (and (buffer-modified-p buffer)
-                   (fboundp '1on1-flash-ding-minibuffer-frame))
-          (1on1-flash-ding-minibuffer-frame t)) ; Defined in `oneonone.el'.
-        (when (kill-buffer buffer)      ; Only delete windows if buffer killed.
-          (dolist (win  wins)           ; (User might keep buffer if modified.)
-            (when (window-live-p win)
-              ;; Ignore error, in particular,
-              ;; "Attempt to delete the sole visible or iconified frame".
-              (condition-case nil (delete-window win) (error nil))))))
-    (when (interactive-p)
-      (error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
-
-(substitute-key-definition 'kill-buffer 'kill-buffer-and-its-windows global-map)
-
-;;; put the buffer from the selected window in next window, and vice versa
-(defun swap-buffers-in-windows ()
-  "Put the buffer from the selected window in next window, and vice versa"
-  (interactive)
-  (let* ((this (selected-window))
-         (other (next-window))
-         (this-buffer (window-buffer this))
-         (other-buffer (window-buffer other)))
-    (set-window-buffer other this-buffer)
-    (set-window-buffer this other-buffer)
-    )
-  )
-
-(global-set-key (kbd "C-x <down>") 'swap-buffers-in-windows)
 
 ;;; dired
 (add-hook 'dired-load-hook
@@ -215,12 +178,6 @@ BUFFER may be either a buffer or its name (a string)."
   :config
   (global-set-key (kbd "M-x") 'smex))
 
-;; avy
-(use-package avy
-  :ensure t
-  :config
-  (global-set-key (kbd "C-'") 'avy-goto-char))
-
 ;; ace-window
 (use-package ace-window
   :ensure t
@@ -307,7 +264,9 @@ BUFFER may be either a buffer or its name (a string)."
   :ensure t
   :config
   (progn
-    (add-hook 'html-mode-hook  'emmet-mode)))
+    (add-hook 'html-mode-hook  'emmet-mode)
+    (add-hook 'html-mode-hook  'css-mode)
+    (add-hook 'html-mode-hook  'less-css-mode)))
 
 ;; latex
 (require 'tex)
@@ -346,11 +305,9 @@ BUFFER may be either a buffer or its name (a string)."
 ;;; nginx
 (use-package nginx-mode
   :ensure t)
-;; normal size
-;; (setq font-latex-fontify-sectioning 'color)
+
+;; latex
 (setq font-latex-fontify-sectioning 1.0)
-
-
 (setq reftex-plug-into-AUCTeX t)
 (setq Tex-Source-Correlate t)
 (setq TeX-output-view-style
@@ -381,10 +338,15 @@ BUFFER may be either a buffer or its name (a string)."
              TeX-command-list)))
 
 ;; yasnippet
-(add-to-list 'load-path
-             "~/.emacs.d/plugins/yasnippet")
-(require 'yasnippet)
-(yas/minor-mode 1)
+(use-package yasnippet
+  :ensure t
+  :config
+  (progn
+    (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+    (define-key yas-minor-mode-map (kbd "<tab>") nil)
+    (define-key yas-minor-mode-map (kbd "TAB") nil)
+    (define-key yas-minor-mode-map (kbd "C-<return>") 'yas-expand)
+    (yas-global-mode 1)))
 
 (use-package less-css-mode
   :ensure t)
@@ -416,87 +378,10 @@ BUFFER may be either a buffer or its name (a string)."
 (defalias 'fc 'flycheck-mode)
 (defalias 'wc 'whitespace-cleanup)
 
-(require 'thingatpt)
-
-(defun thing-at-point-goto-end-of-integer ()
-  "Go to end of integer at point."
-  (let ((inhibit-changing-match-data t))
-    ;; Skip over optional sign
-    (when (looking-at "[+-]")
-      (forward-char 1))
-    ;; Skip over digits
-    (skip-chars-forward "[[:digit:]]")
-    ;; Check for at least one digit
-    (unless (looking-back "[[:digit:]]")
-      (error "No integer here"))))
-(put 'integer 'beginning-op 'thing-at-point-goto-end-of-integer)
-
-(defun thing-at-point-goto-beginning-of-integer ()
-  "Go to end of integer at point."
-  (let ((inhibit-changing-match-data t))
-    ;; Skip backward over digits
-    (skip-chars-backward "[[:digit:]]")
-    ;; Check for digits and optional sign
-    (unless (looking-at "[+-]?[[:digit:]]")
-      (error "No integer here"))
-    ;; Skip backward over optional sign
-    (when (looking-back "[+-]")
-      (backward-char 1))))
-(put 'integer 'beginning-op 'thing-at-point-goto-beginning-of-integer)
-
-(defun thing-at-point-bounds-of-integer-at-point ()
-  "Get boundaries of integer at point."
-  (save-excursion
-    (let (beg end)
-      (thing-at-point-goto-beginning-of-integer)
-      (setq beg (point))
-      (thing-at-point-goto-end-of-integer)
-      (setq end (point))
-      (cons beg end))))
-(put 'integer 'bounds-of-thing-at-point 'thing-at-point-bounds-of-integer-at-point)
-
-(defun thing-at-point-integer-at-point ()
-  "Get integer at point."
-  (let ((bounds (bounds-of-thing-at-point 'integer)))
-    (string-to-number (buffer-substring (car bounds) (cdr bounds)))))
-(put 'integer 'thing-at-point 'thing-at-point-integer-at-point)
-
-(defun increment-integer-at-point (&optional inc)
-  "Increment integer at point by one.
-
-With numeric prefix arg INC, increment the integer by INC amount."
-  (interactive "p")
-  (let ((inc (or inc 1))
-        (n (thing-at-point 'integer))
-        (bounds (bounds-of-thing-at-point 'integer)))
-    (delete-region (car bounds) (cdr bounds))
-    (insert (int-to-string (+ n inc)))))
-
-(defun decrement-integer-at-point (&optional dec)
-  "Decrement integer at point by one.
-
-With numeric prefix arg DEC, decrement the integer by DEC amount."
-  (interactive "p")
-  (increment-integer-at-point (- (or dec 1))))
-
-
-(global-set-key (kbd "C-c C-<up>") 'increment-integer-at-point)
-(global-set-key (kbd "C-c C-<down>") 'decrement-integer-at-point)
+;; custom-set-variables
+(setq custom-file "~/.emacs.d/.custom.el")
+(load custom-file)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (use-package toc-org super-save smex restclient rainbow-mode rainbow-delimiters projectile nginx-mode markdown-mode magit less-css-mode js2-refactor grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern color-theme auctex ace-window ac-php))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
