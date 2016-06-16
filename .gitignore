@@ -12,3 +12,4 @@ auto-save-list
 /url
 session.*
 /.custom.el
+/#ido.last#

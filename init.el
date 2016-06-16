@@ -249,11 +249,17 @@
                           '(json-jsonlist)))))
 
 ;; python
-(add-hook 'python-mode-hook
-          (lambda ()
-            (progn
-              (pyvenv-mode)
-              (flycheck-mode))))
+(add-hook 'python-mode-hook 'flycheck-mode)
+
+(use-package anaconda-mode
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (use-package company-anaconda
+    :ensure t
+    :config
+    (eval-after-load "company"
+      '(add-to-list 'company-backends 'company-anaconda))))
 
 ;; geiser
 (use-package geiser
