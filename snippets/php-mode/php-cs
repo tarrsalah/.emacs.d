@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: php-cs
+# key: php-cs
+# --
+<?php
+/**
+* PHP Version ${1:7}
+
+* @category ${2:Category}
+* @package  ${3:Package}
+* @author   tarrsalah <tarrsalah@gmail.com>
+* @license  https://opensource.org/licenses/MIT Mit
+* @link     https://github.com/tarrsalah
+*/
+
+$0

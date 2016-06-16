@@ -3,15 +3,6 @@
 # key: php
 # --
 <?php
-
-/**
-* PHP Version ${1:7}
-
-* @category ${2:Category}
-* @package  ${3:Package}
-* @author   tarrsalah <tarrsalah@gmail.com>
-* @license  https://opensource.org/licenses/MIT Mit
-* @link     https://github.com/tarrsalah
-*/
-
+// @codingStandardsIgnoreStart
 $0
+// @codingStandardsIgnoreEnd
