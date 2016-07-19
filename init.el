@@ -301,16 +301,23 @@
     "Inserts -> at point"
     (interactive)
     (insert "->"))
-
   (add-hook 'php-mode-hook
             (lambda()
               (php-enable-psr2-coding-style)
-              (flycheck-mode)))
-  (use-package ac-php
-    :ensure t
-    :config
-    (load-file "~/.emacs.d/legacy/company-php.el")
-    (add-to-list 'company-backends 'company-ac-php-backend )))
+              (setq flycheck-phpcs-standard "PSR2")
+              (flycheck-mode 0)))
+
+  (add-hook 'php-mode-hook
+            '(lambda ()
+               (require 'company-php)
+               (company-mode t)
+               (add-to-list 'company-backends 'company-ac-php-backend ))))
+
+;; drupal
+(add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.module\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.install\\'" . php-mode))
 
 ;; docker
 (use-package dockerfile-mode
