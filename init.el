@@ -193,6 +193,12 @@
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
 
+;; windmove
+(global-set-key (kbd "C-c <C-left>")  'windmove-left)
+(global-set-key (kbd "C-c <C-right>") 'windmove-right)
+(global-set-key (kbd "C-c <C-up>")    'windmove-up)
+(global-set-key (kbd "C-c <C-down>")  'windmove-down)
+
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
