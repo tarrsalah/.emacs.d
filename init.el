@@ -152,7 +152,7 @@
   :config
   (progn
     (setq company-tooltip-limit 10)
-    (setq company-idle-delay .1)
+    (setq company-idle-delay 1)
     (setq company-echo-delay 0)
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
@@ -217,7 +217,7 @@
     ("inf" "∞")
     ("ar1" "→")
     ("ar2" "⇒")))
-(abbrev-mode 1)
+(abbrev-mode 0)
 
 ;; org-mode
 (use-package toc-org
@@ -320,7 +320,7 @@
             (lambda()
               (php-enable-psr2-coding-style)
               (setq flycheck-phpcs-standard "PSR2")
-              (flycheck-mode 0)))
+              (flycheck-mode 1)))
 
   (add-hook 'php-mode-hook
             '(lambda ()
