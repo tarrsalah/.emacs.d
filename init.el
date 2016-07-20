@@ -80,7 +80,7 @@
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 130)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 116)
 (setq-default line-spacing 3)
 
 ;; arabic font, form:
