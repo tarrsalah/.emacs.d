@@ -53,6 +53,15 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+
+;; initial window
+(setq initial-frame-alist
+      '(
+        (width . 102) ; character
+        (height . 38) ; lines
+        ))
+
+
 ;; colorize the compilation buffer
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
