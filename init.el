@@ -199,6 +199,11 @@
 (global-set-key (kbd "C-c <C-up>")    'windmove-up)
 (global-set-key (kbd "C-c <C-down>")  'windmove-down)
 
+;; ace-jumb-mode
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-." . ace-jump-mode))
+
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
