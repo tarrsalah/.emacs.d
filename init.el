@@ -290,9 +290,9 @@
   :ensure t
   :config
   (progn
-    (add-hook 'html-mode-hook  'emmet-mode)
-    (add-hook 'html-mode-hook  'css-mode)
-    (add-hook 'html-mode-hook  'less-css-mode)))
+    (add-hook 'html-mode-hook 'emmet-mode)
+    (add-hook 'css-mode 'emmet-mode)
+    (add-hook 'less-css-mode 'emmet-mode)))
 
 ;; latex
 (require 'tex)
