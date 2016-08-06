@@ -174,6 +174,8 @@
     (setq projectile-keymap-prefix (kbd "C-c p"))
     (setq projectile-enable-caching t)
     (add-to-list
+     'projectile-globally-ignored-directories "dist")
+    (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
 
 ;; flycheck
@@ -422,6 +424,10 @@
 (defalias 'erb 'erase-buffer)
 (defalias 'fc 'flycheck-mode)
 (defalias 'wc 'whitespace-cleanup)
+
+;;
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
 
 ;; custom-set-variables
 (setq custom-file "~/.emacs.d/.custom.el")
