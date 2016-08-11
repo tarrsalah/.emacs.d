@@ -19,6 +19,8 @@
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
 (menu-bar-mode 0)
+(global-auto-revert-mode)
+
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
