@@ -287,12 +287,16 @@
 (use-package geiser
   :ensure t)
 
-;; html
+;; web-mode
+(use-package web-mode
+  :ensure t)
+
+;; emmet-mode
 (use-package emmet-mode
   :ensure t
   :config
   (progn
-    (add-hook 'web-mode 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode)
     (add-hook 'html-mode-hook 'emmet-mode)
     (add-hook 'css-mode 'emmet-mode)
     (add-hook 'less-css-mode 'emmet-mode)))
