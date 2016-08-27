@@ -291,7 +291,13 @@
 
 ;; web-mode
 (use-package web-mode
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+
+
 
 ;; emmet-mode
 (use-package emmet-mode
