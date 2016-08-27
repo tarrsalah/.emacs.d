@@ -340,7 +340,7 @@
             '(lambda ()
                (require 'company-php)
                (company-mode t)
-               (add-to-list 'company-backends 'company-ac-php-backend ))))
+               (add-to-list 'company-backends 'company-ac-php-backend))))
 
 ;; drupal
 (add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
@@ -402,6 +402,9 @@
     (yas-global-mode 1)))
 
 (use-package less-css-mode
+  :ensure t)
+
+(use-package yaml-mode
   :ensure t)
 
 (use-package rainbow-mode
