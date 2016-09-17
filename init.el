@@ -361,8 +361,12 @@
 (use-package restclient
   :ensure t)
 
-;;; nginx
+;; nginx
 (use-package nginx-mode
+  :ensure t)
+
+;; stylus
+(use-package stylus-mode
   :ensure t)
 
 ;; latex
