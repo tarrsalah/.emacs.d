@@ -371,6 +371,10 @@
 (use-package stylus-mode
   :ensure t)
 
+;; sbcl
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
 (setq reftex-plug-into-AUCTeX t)
