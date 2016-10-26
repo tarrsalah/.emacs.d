@@ -13,3 +13,5 @@ auto-save-list
 session.*
 /.custom.el
 /#ido.last#
+/eshell/
+/tramp

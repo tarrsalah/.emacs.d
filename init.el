@@ -299,8 +299,6 @@
      (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
      (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
 
-
-
 ;; emmet-mode
 (use-package emmet-mode
   :ensure t
@@ -375,6 +373,10 @@
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((lisp . t)))
+
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
 (setq reftex-plug-into-AUCTeX t)
@@ -388,7 +390,7 @@
 (add-hook 'text-mode-hook
           (lambda ()
             (progn
-              ;; (flyspell-mode 1)
+              (flyspell-mode 1)
               (setq ispell-dictionary "francais")
               (setq TeX-PDF-mode t))))
 
