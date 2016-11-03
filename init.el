@@ -7,7 +7,7 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
+(when (< emacs-major-version 23)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
@@ -82,7 +82,7 @@
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 116)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 110)
 (setq-default line-spacing 3)
 
 ;; arabic font, form:
@@ -159,6 +159,10 @@
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
 
+;; paredit
+(use-package paredit
+  :ensure t)
+
 ;; grizzl for projectile completion
 (use-package grizzl
   :ensure t
@@ -196,6 +200,13 @@
   :ensure t
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
+
+
+(use-package highlight-indentation
+  :ensure t)
+(set-face-background 'highlight-indentation-current-column-face "#666")
+(highlight-indentation-mode 1)
+
 
 ;; windmove
 (global-set-key (kbd "C-c <C-left>")  'windmove-left)
@@ -295,9 +306,10 @@
   :ensure t
   :config
   (progn
-     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
-     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+    (electric-pair-mode 1)
+    (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
 
 ;; emmet-mode
 (use-package emmet-mode
@@ -332,23 +344,20 @@
   :ensure t
   :bind ("C->" . cmack/php-quick-arrow)
   :config
-  (defun cmack/php-quick-arrow ()
-    "Inserts -> at point"
-    (interactive)
-    (insert "->"))
-  (add-hook 'php-mode-hook
-            (lambda()
-              (php-enable-psr2-coding-style)
-              (setq flycheck-phpcs-standard "PSR2")
-              (flycheck-mode 1)))
+  (progn
+    (defun cmack/php-quick-arrow ()
+      "Inserts -> at point"
+      (interactive)
+      (insert "->"))
+    (use-package company-php
+      :ensure t)
+    (add-hook 'php-mode-hook
+              '(lambda ()
+                 (require 'company-php)
+                 (company-mode t)
+                 (add-to-list 'company-backends 'company-ac-php-backend)))))
 
-  (add-hook 'php-mode-hook
-            '(lambda ()
-               (require 'company-php)
-               (company-mode t)
-               (add-to-list 'company-backends 'company-ac-php-backend))))
-
-;; drupal
+;; drupal 7
 (add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.module\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
@@ -363,10 +372,6 @@
 
 ;; nginx
 (use-package nginx-mode
-  :ensure t)
-
-;; stylus
-(use-package stylus-mode
   :ensure t)
 
 ;; sbcl
@@ -390,7 +395,7 @@
 (add-hook 'text-mode-hook
           (lambda ()
             (progn
-              (flyspell-mode 1)
+              (flyspell-mode 0)
               (setq ispell-dictionary "francais")
               (setq TeX-PDF-mode t))))
 
