@@ -287,15 +287,13 @@
 ;; python
 (add-hook 'python-mode-hook 'flycheck-mode)
 
-(use-package anaconda-mode
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (use-package company-anaconda
-    :ensure t
-    :config
-    (eval-after-load "company"
-      '(add-to-list 'company-backends 'company-anaconda))))
+(defun my/python-mode-hook ()
+  (jedi:setup)
+  (setq-local company-backends '(company-jedi company-dabbrev)))
+
+(with-eval-after-load 'python
+  (add-hook 'python-mode-hook 'my/python-mode-hook))
+
 
 ;; geiser
 (use-package geiser
@@ -348,14 +346,7 @@
     (defun cmack/php-quick-arrow ()
       "Inserts -> at point"
       (interactive)
-      (insert "->"))
-    (use-package company-php
-      :ensure t)
-    (add-hook 'php-mode-hook
-              '(lambda ()
-                 (require 'company-php)
-                 (company-mode t)
-                 (add-to-list 'company-backends 'company-ac-php-backend)))))
+      (insert "->"))))
 
 ;; drupal 7
 (add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
