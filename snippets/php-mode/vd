@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: vd
+# key: vd
+# --
+var_dump(${expression[, mixed expression]});$0

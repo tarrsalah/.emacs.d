@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: vdd
+# key: vdd
+# --
+var_dump($1);die();
