@@ -21,6 +21,12 @@
 (menu-bar-mode 0)
 (global-auto-revert-mode)
 
+;;; twilight color theme
+(setq custom-safe-themes t)
+(setq custom-theme-load-path
+      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
+(load-theme 'twilight)
+
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
 
@@ -99,20 +105,6 @@
 
 ;;; use-package
 (require 'use-package)
-
-;;; twilight color theme
-(use-package color-theme
-  :ensure t)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-file "~/.emacs.d/themes/color-theme-twilight.el")
-(color-theme-twilight)
-
-;; super-save
-(use-package super-save
-  :ensure t
-  :config
-  (super-save-initialize))
 
 ;; markdown
 (use-package markdown-mode
