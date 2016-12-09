@@ -1,6 +1,6 @@
-* My emacs configurations
+* My emacs configurations (NOT UPDATED)
 ** table of contents                              :TOC_3:
- - [[#my-emacs-configurations][My emacs configurations]]
+ - [[#my-emacs-configurations-not-updated][My emacs configurations (NOT UPDATED)]]
    - [[#misc-settings][misc settings]]
    - [[#kill-buffer-and-its-windows][kill buffer and its windows]]
    - [[#dired][dired]]

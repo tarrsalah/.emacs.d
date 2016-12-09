@@ -361,6 +361,11 @@
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
+(use-package slime-company
+  :ensure t
+  :config
+  (slime-setup '(slime-fancy slime-company)))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((lisp . t)))
