@@ -368,7 +368,7 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((lisp . t)))
+ '((lisp . t) (sh . t)))
 
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
