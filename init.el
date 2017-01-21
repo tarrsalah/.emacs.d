@@ -268,6 +268,7 @@
       (add-to-list 'company-backends 'company-tern))
 
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
+    (setq js-indent-level 2)
 
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
