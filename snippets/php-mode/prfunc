@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name : private function ...(...)
+# --
+private public function ${name}(${args})
+{
+   $0
+}
