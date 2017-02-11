@@ -5,6 +5,10 @@
 (setq package-enable-at-startup nil)
 
 (require 'package)
+
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (when (< emacs-major-version 23)
@@ -278,14 +282,27 @@
                           '(json-jsonlist)))))
 
 ;; python
-(add-hook 'python-mode-hook 'flycheck-mode)
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (progn
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell)
+    (setq venv-location (expand-file-name "~/.virtualenvs"))
+    (setq python-environment-directory venv-location)))
 
-(defun my/python-mode-hook ()
-  (jedi:setup)
-  (setq-local company-backends '(company-jedi company-dabbrev)))
+(use-package company-jedi
+  :ensure t
+  :config
+  (progn
+    (defun my/python-mode-hook ()
+      (jedi:setup)
+      (setq-local company-backends '(company-jedi company-dabbrev)))
 
-(with-eval-after-load 'python
-  (add-hook 'python-mode-hook 'my/python-mode-hook))
+    (with-eval-after-load 'python
+      (add-hook 'python-mode-hook 'my/python-mode-hook))))
+
+
 
 
 ;; geiser
