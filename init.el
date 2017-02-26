@@ -178,6 +178,8 @@
     (add-to-list
      'projectile-globally-ignored-directories "dist")
     (add-to-list
+     'projectile-globally-ignored-directories "vendor")
+    (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
 
 ;; flycheck

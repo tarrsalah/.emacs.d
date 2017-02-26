@@ -15,3 +15,5 @@ session.*
 /#ido.last#
 /eshell/
 /tramp
+network-security.data
+.python-environments/
