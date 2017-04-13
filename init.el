@@ -89,7 +89,7 @@
 (add-hook 'dired-mode-hook
           (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$")
 
 ;; set font size
 (set-face-attribute 'default nil :family "Ubuntu Mono" :height 110)
@@ -177,6 +177,8 @@
     (setq projectile-enable-caching t)
     (add-to-list
      'projectile-globally-ignored-directories "dist")
+    (add-to-list
+     'projectile-globally-ignored-directories ".db")
     (add-to-list
      'projectile-globally-ignored-directories "vendor")
     (add-to-list
@@ -476,3 +478,4 @@
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
+(setq ring-bell-function 'ignore)
