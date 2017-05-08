@@ -379,6 +379,12 @@
 (use-package nginx-mode
   :ensure t)
 
+;; apache
+(use-package apache-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.conf\\'" . php-mode)))
+
 ;; sbcl
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
