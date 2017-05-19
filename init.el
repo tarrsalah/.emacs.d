@@ -92,7 +92,7 @@
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$")
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 110)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
 (setq-default line-spacing 3)
 
 ;; arabic font, form:
@@ -312,6 +312,26 @@
 ;; geiser
 (use-package geiser
   :ensure t)
+
+;; golang
+(defun setup-go ()
+  (progn
+    ;; go completion
+    (use-package company-go
+      :ensure t
+      :config
+      (progn
+        (add-hook
+         'go-mode-hook
+         (lambda ()
+           (set (make-local-variable 'company-backends) '(company-go))
+           (company-mode)))))
+    ;; automatic code formatting with gofmt
+    (add-hook 'before-save-hook 'gofmt-before-save)))
+
+(use-package go-mode
+  :ensure t
+  :config (setup-go))
 
 ;; web-mode
 (use-package web-mode
