@@ -463,7 +463,7 @@
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (define-key yas-minor-mode-map (kbd "<tab>") nil)
     (define-key yas-minor-mode-map (kbd "TAB") nil)
-    (define-key yas-minor-mode-map (kbd "C-<return>") 'yas-expand)
+    (define-key yas-minor-mode-map (kbd "C-e C-e") 'yas-expand)
     (yas-global-mode 1)))
 
 (use-package less-css-mode
