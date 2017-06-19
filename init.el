@@ -345,6 +345,7 @@
     (setq web-mode-css-indent-offset 2)
     (setq  web-mode-code-indent-offset 2)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
