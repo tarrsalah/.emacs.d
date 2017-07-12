@@ -26,10 +26,10 @@
 (global-auto-revert-mode)
 
 ;;; twilight color theme
-(setq custom-safe-themes t)
-(setq custom-theme-load-path
-      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
-(load-theme 'twilight)
+;; (setq custom-safe-themes t)
+;; (setq custom-theme-load-path
+;;       (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
+;; (load-theme 'twilight)
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -292,21 +292,19 @@
   (progn
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell)
-    (setq venv-location (expand-file-name "~/.virtualenvs"))
+    (setq venv-location (expand-file-name "~/.workon"))
     (setq python-environment-directory venv-location)))
 
-(use-package company-jedi
-  :ensure t
-  :config
-  (progn
-    (defun my/python-mode-hook ()
-      (jedi:setup)
-      (setq-local company-backends '(company-jedi company-dabbrev)))
+;; (use-package company-jedi
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (defun my/python-mode-hook ()
+;;       (jedi:setup)
+;;       (setq-local company-backends '(company-jedi company-dabbrev)))
 
-    (with-eval-after-load 'python
-      (add-hook 'python-mode-hook 'my/python-mode-hook))))
-
-
+;;     (with-eval-after-load 'python
+;;       (add-hook 'python-mode-hook 'my/python-mode-hook))))
 
 
 ;; geiser
@@ -347,6 +345,7 @@
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
 
@@ -507,6 +506,12 @@
 ;; custom-set-variables
 (setq custom-file "~/.emacs.d/.custom.el")
 (load custom-file)
+
+;; load sanityinc theme
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t)
+
+(load-theme 'sanityinc-tomorrow-night t)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
