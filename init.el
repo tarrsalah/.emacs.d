@@ -180,6 +180,8 @@
     (add-to-list
      'projectile-globally-ignored-directories ".db")
     (add-to-list
+     'projectile-globally-ignored-directories "./.db")
+    (add-to-list
      'projectile-globally-ignored-directories "vendor")
     (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
