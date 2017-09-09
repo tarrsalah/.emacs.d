@@ -277,6 +277,12 @@
       :config
       (add-to-list 'company-backends 'company-tern))
 
+    (use-package prettier-js
+      :ensure t
+      :config
+      (progn
+        (add-hook 'js2-mode-hook 'prettier-js-mode)))
+
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
     (setq js-indent-level 2)
 
