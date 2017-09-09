@@ -321,7 +321,7 @@
 
 ;; golang
 
-    ;; go completion
+;; go completion
 (defun setup-go ()
   (progn
     ;; automatic code formatting with gofmt
@@ -353,9 +353,15 @@
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+
+;; jade-mode for pug files
+(use-package jade-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.pug\\'" . jade-mode))))
 
 ;; emmet-mode
 (use-package emmet-mode
@@ -421,7 +427,7 @@
 
 ;; sbcl
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program "/usr/bin/sbcl")
 
 (use-package slime-company
   :ensure t
