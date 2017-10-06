@@ -89,7 +89,7 @@
 ;; (add-hook 'dired-mode-hook
 ;;           (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$")
 
 ;; set font size
 (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
@@ -369,6 +369,7 @@
   :config
   (progn
     (add-hook 'web-mode-hook 'emmet-mode)
+    (add-hook 'js2-mode 'emmet-mode)
     (add-hook 'html-mode-hook 'emmet-mode)
     (add-hook 'css-mode 'emmet-mode)
     (add-hook 'less-css-mode 'emmet-mode)))

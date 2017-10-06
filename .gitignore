@@ -17,3 +17,4 @@ session.*
 /tramp
 network-security.data
 .python-environments/
+image-dired
