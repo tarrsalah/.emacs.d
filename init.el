@@ -25,11 +25,11 @@
 (menu-bar-mode 0)
 (global-auto-revert-mode)
 
-;;; twilight color theme
-;; (setq custom-safe-themes t)
-;; (setq custom-theme-load-path
-;;       (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
-;; (load-theme 'twilight)
+;;twilight color theme
+(setq custom-safe-themes t)
+(setq custom-theme-load-path
+      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
+(load-theme 'twilight)
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -90,18 +90,6 @@
 ;;           (lambda () (dired-hide-details-mode 1)))
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$")
-
-;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
-(setq-default line-spacing 3)
-
-;; arabic font, form:
-;; "http://stackoverflow.com/questions/11012627/emacs-font-for-western-and-other-like-rtl"
-(set-fontset-font
- "fontset-default"
- (cons (decode-char 'ucs #x0600) (decode-char 'ucs #x06ff))
- "DejaVu Sans Mono")
-
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
@@ -427,17 +415,17 @@
   (add-to-list 'auto-mode-alist '("\\.conf\\'" . php-mode)))
 
 ;; sbcl
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "/usr/bin/sbcl")
+;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; (setq inferior-lisp-program "/usr/bin/sbcl")
 
-(use-package slime-company
-  :ensure t
-  :config
-  (slime-setup '(slime-fancy slime-company)))
+;; (use-package slime-company
+;;   :ensure t
+;;   :config
+;;   (slime-setup '(slime-fancy slime-company)))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((lisp . t) (sh . t)))
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;; '((lisp . t) (sh . t)))
 
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
@@ -519,16 +507,29 @@
       browse-url-generic-program "google-chrome")
 
 ;; custom-set-variables
-(setq custom-file "~/.emacs.d/.custom.el")
-(load custom-file)
-
-;; load sanityinc theme
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t)
-
-(load-theme 'sanityinc-tomorrow-night t)
+;; (setq custom-file "~/.emacs.d/.custom.el")
+;; (load custom-file)
+(set-face-attribute 'default nil :height 150)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
 (setq ring-bell-function 'ignore)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js php-mode paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
+
+;; set font size
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 100)
+(setq-default line-spacing 3)
