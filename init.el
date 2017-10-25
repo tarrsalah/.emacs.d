@@ -340,6 +340,7 @@
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 4)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
@@ -380,17 +381,6 @@
 (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
 (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
-
-;;; php
-(use-package php-mode
-  :ensure t
-  :bind ("C->" . cmack/php-quick-arrow)
-  :config
-  (progn
-    (defun cmack/php-quick-arrow ()
-      "Inserts -> at point"
-      (interactive)
-      (insert "->"))))
 
 ;; drupal 7
 (add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
@@ -523,7 +513,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js php-mode paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
+    (php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
