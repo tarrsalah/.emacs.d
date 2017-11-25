@@ -25,11 +25,11 @@
 (menu-bar-mode 0)
 (global-auto-revert-mode)
 
-;;twilight color theme
+;;sanityinc-tomorrow-bright color theme
 (setq custom-safe-themes t)
-(setq custom-theme-load-path
-      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
-(load-theme 'twilight)
+;; (setq custom-theme-load-path
+;;      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
+(load-theme 'sanityinc-tomorrow-bright)
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -514,7 +514,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
+    (helm php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
