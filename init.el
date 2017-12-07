@@ -337,6 +337,7 @@
   (progn
     (electric-pair-mode 1)
     (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-enable-auto-pairing nil)
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 4)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
