@@ -407,19 +407,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.conf\\'" . php-mode)))
 
-;; sbcl
-;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
-;; (setq inferior-lisp-program "/usr/bin/sbcl")
-
-;; (use-package slime-company
-;;   :ensure t
-;;   :config
-;;   (slime-setup '(slime-fancy slime-company)))
-
-;;(org-babel-do-load-languages
-;; 'org-babel-load-languages
-;; '((lisp . t) (sh . t)))
-
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
 (setq reftex-plug-into-AUCTeX t)
