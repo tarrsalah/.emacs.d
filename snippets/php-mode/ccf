@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name : ccf
-# --
-/**
- * $1
- *
- * @param $2
- * @return ${3:void}
- */

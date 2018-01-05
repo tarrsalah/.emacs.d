@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name : public function ...(...)
-# --
-public function ${name}(${args})
-{
-   $0
-}

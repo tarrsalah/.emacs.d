@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: php
-# key: php
-# --
-<?php
-// @codingStandardsIgnoreStart
-$0
-
-// @codingStandardsIgnoreEnd
