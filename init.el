@@ -270,6 +270,7 @@
       :ensure t
       :config
       (progn
+        (add-hook 'json-mode-hook 'prettier-js-mode)
         (add-hook 'js2-mode-hook 'prettier-js-mode)))
 
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
@@ -511,5 +512,5 @@
  '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 100)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 105)
 (setq-default line-spacing 3)
