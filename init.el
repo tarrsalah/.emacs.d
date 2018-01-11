@@ -271,6 +271,7 @@
       :config
       (progn
         (add-hook 'json-mode-hook 'prettier-js-mode)
+        (add-hook 'css-mode-hook 'prettier-js-mode)
         (add-hook 'js2-mode-hook 'prettier-js-mode)))
 
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
