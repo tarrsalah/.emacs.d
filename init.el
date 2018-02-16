@@ -29,7 +29,7 @@
 (setq custom-safe-themes t)
 ;; (setq custom-theme-load-path
 ;;      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
-(load-theme 'sanityinc-tomorrow-bright)
+(load-theme 'sanityinc-tomorrow-night)
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -464,6 +464,16 @@
 
 (use-package rainbow-delimiters
   :ensure t)
+
+(use-package multiple-cursors
+  :ensure t
+  :config
+  (progn
+    (global-set-key (kbd "C-c m e") 'mc/edit-lines)
+    (global-set-key (kbd "C-c m n") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-c m p") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c m a") 'mc/mark-all-like-this)
+    ))
 
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
