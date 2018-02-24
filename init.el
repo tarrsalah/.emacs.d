@@ -463,16 +463,6 @@
 (use-package rainbow-delimiters
   :ensure t)
 
-(use-package multiple-cursors
-  :ensure t
-  :config
-  (progn
-    (global-set-key (kbd "C-c m e") 'mc/edit-lines)
-    (global-set-key (kbd "C-c m n") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-c m p") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-c m a") 'mc/mark-all-like-this)
-    ))
-
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
