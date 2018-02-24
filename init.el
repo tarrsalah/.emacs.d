@@ -27,8 +27,6 @@
 
 ;;sanityinc-tomorrow-bright color theme
 (setq custom-safe-themes t)
-;; (setq custom-theme-load-path
-;;      (directory-files (concat user-emacs-directory "themes") t "^[^\.]"))
 (load-theme 'sanityinc-tomorrow-night)
 
 ;; enable automatically pair braces and quotes
