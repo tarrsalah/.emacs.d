@@ -14,7 +14,6 @@
 (when (< emacs-major-version 23)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-(package-initialize)
 
 ;;; misc settings
 (tool-bar-mode 0)
@@ -28,6 +27,9 @@
 ;;sanityinc-tomorrow-bright color theme
 (setq custom-safe-themes t)
 (load-theme 'sanityinc-tomorrow-night)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -228,6 +230,12 @@
     ("ar2" "⇒")))
 (abbrev-mode 0)
 
+;; imenu-list
+(use-package imenu-list
+  :ensure t
+  :config
+  (global-set-key (kbd "C-'") #'imenu-list-smart-toggle))
+
 ;; org-mode
 (use-package toc-org
   :ensure t
@@ -341,12 +349,16 @@
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 4)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\tpl.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+
+;; php-mode
+(use-package php-mode
+  :ensure t)
 
 ;; jade-mode for pug files
 (use-package jade-mode
@@ -500,9 +512,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(sanityinc-tomorrow-night))
+ '(hl-sexp-background-color "#efebe9")
  '(package-selected-packages
-   (quote
-    (helm php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode))))
+   '(solarized-theme base16-theme leuven-theme imenu-list phpcbf php-mode helm php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

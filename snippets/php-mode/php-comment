@@ -1,9 +1,8 @@
 # -*- mode: snippet -*-
-# name: php*
-# key: php*
+# name: php-comment
+# key: *
 # --
 /**
- *
  * $1
  *
  */
