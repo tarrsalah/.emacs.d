@@ -24,12 +24,6 @@
 (menu-bar-mode 0)
 (global-auto-revert-mode)
 
-;;sanityinc-tomorrow-bright color theme
-(setq custom-safe-themes t)
-(load-theme 'sanityinc-tomorrow-night)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -80,6 +74,11 @@
   (toggle-read-only)
   (ansi-color-apply-on-region (point-min) (point-max))
   (toggle-read-only))
+
+;; theme
+(setq custom-safe-themes t)
+(setq-default custom-enabled-themes '(solarized))
+
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
@@ -499,29 +498,14 @@
       browse-url-generic-program "google-chrome")
 
 ;; custom-set-variables
-;; (setq custom-file "~/.emacs.d/.custom.el")
-;; (load custom-file)
+(setq custom-file "~/.emacs.d/.custom.el")
+(load custom-file)
 (set-face-attribute 'default nil :height 150)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
 (setq ring-bell-function 'ignore)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(sanityinc-tomorrow-night))
- '(hl-sexp-background-color "#efebe9")
- '(package-selected-packages
-   '(solarized-theme base16-theme leuven-theme imenu-list phpcbf php-mode helm php+-mode color-theme-sanityinc-tomorrow yaml-mode web-mode virtualenvwrapper use-package toc-org smex slime-company restclient rainbow-mode rainbow-delimiters projectile prettier-js paredit nginx-mode markdown-mode magit js2-refactor jade-mode highlight-indentation grizzl geiser flycheck expand-region exec-path-from-shell emmet-mode dockerfile-mode company-tern company-go auctex apache-mode ace-window ace-jump-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(grizzl-selection-face ((t (:foreground "#8F9D6A")))))
 
 ;; set font size
 (set-face-attribute 'default nil :family "Ubuntu Mono" :height 105)
