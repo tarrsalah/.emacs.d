@@ -248,6 +248,7 @@
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
     (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode)))
+
   :config
   (progn
     (use-package js2-refactor
@@ -256,6 +257,7 @@
       (progn
         (add-hook 'js2-mode-hook #'js2-refactor-mode)
         (js2r-add-keybindings-with-prefix "C-c C-m")))
+
     (add-hook 'js2-mode-hook
               (lambda()
                 (progn
@@ -263,12 +265,23 @@
                   (abbrev-mode t)
                   (setq js2-basic-offset 2)
                   (flycheck-mode))))
+
     (js2-mode-hide-warnings-and-errors)
     (setq-default js2-additional-externs '("require" "module"))
+    (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
+
     (use-package company-tern
       :ensure t
       :config
       (add-to-list 'company-backends 'company-tern))
+
+    (use-package xref-js2
+      :ensure t
+      :config
+      (progn
+        (define-key js2-mode-map (kbd "M-.") nil)
+        (add-hook 'js2-mode-hook (lambda ()
+                                   (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
 
     (use-package prettier-js
       :ensure t
