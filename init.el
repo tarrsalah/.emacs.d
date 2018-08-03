@@ -507,5 +507,5 @@
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 105)
+(set-face-attribute 'default nil :family "Ubuntu Mono" :height 120)
 (setq-default line-spacing 3)
