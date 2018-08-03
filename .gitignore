@@ -18,3 +18,5 @@ session.*
 network-security.data
 .python-environments/
 image-dired
+/geben
+/history
