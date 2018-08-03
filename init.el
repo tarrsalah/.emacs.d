@@ -77,8 +77,7 @@
 
 ;; theme
 (setq custom-safe-themes t)
-(setq-default custom-enabled-themes '(solarized))
-
+(load-theme 'sanityinc-tomorrow-night)
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
