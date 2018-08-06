@@ -359,17 +359,13 @@
     (setq web-mode-enable-auto-pairing nil)
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 4)
+    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\tpl.php\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
-
-;; php-mode
-(use-package php-mode
-  :ensure t)
 
 ;; jade-mode for pug files
 (use-package jade-mode
@@ -409,9 +405,9 @@
 
 ;; drupal 7
 (add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.module\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.install\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.module\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.install\\'" . web-mode))
 
 ;; docker
 (use-package dockerfile-mode
@@ -428,7 +424,7 @@
 (use-package apache-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.conf\\'" . php-mode)))
+  (add-to-list 'auto-mode-alist '("\\.conf\\'" . apache-mode)))
 
 ;; latex
 (setq font-latex-fontify-sectioning 1.0)
