@@ -84,10 +84,9 @@
 ;;; dired
 (add-hook 'dired-load-hook
           '(lambda () (require 'dired-x)))
-;; (add-hook 'dired-mode-hook
-;;           (lambda () (dired-hide-details-mode 1)))
+
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$\\|__pycache__")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
@@ -308,19 +307,15 @@
   (progn
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell)
-    (setq venv-location (expand-file-name "~/.workon"))
+    (setq venv-location (expand-file-name "~/workon"))
     (setq python-environment-directory venv-location)))
 
-;; (use-package company-jedi
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (defun my/python-mode-hook ()
-;;       (jedi:setup)
-;;       (setq-local company-backends '(company-jedi company-dabbrev)))
-
-;;     (with-eval-after-load 'python
-;;       (add-hook 'python-mode-hook 'my/python-mode-hook))))
+(use-package company-jedi
+  :ensure t
+  :config
+  (progn
+    (jedi:setup)
+    (add-to-list 'company-backends 'company-jedi)))
 
 
 ;; geiser
