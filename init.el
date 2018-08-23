@@ -300,14 +300,20 @@
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))))
 
-(setenv "WORKON_HOME" "/home/tarrsalah/workon")
-(use-package elpy
+(use-package virtualenvwrapper
+  :ensure
+  :config
+  (progn
+    (setq venv-location "~/workon")
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell)))
+
+(use-package company-jedi
   :ensure t
   :config
   (progn
-    (elpy-enable)
-    (setq elpy-rpc-python-command "python3")
-    (setq python-shell-interpreter "python3")))
+    (jedi:setup)
+    (add-to-list 'company-backends 'company-jedi)))
 
 ;; geiser
 (use-package geiser
