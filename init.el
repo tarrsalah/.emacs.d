@@ -108,18 +108,20 @@
 (setq org-support-shift-select t)
 (setq org-hide-leading-stars t)
 
-;; ido
-(setq my/ido-order '(".tex" ".go" ".js" ".el" ".py"))
+;;; ibuffer
+(use-package ibuffer
+  :bind (("C-x C-b" . ibuffer)))
 
-(use-package ido
-  :init (ido-mode 1)
+;;; ivy-mode
+(use-package swiper
+  :ensure t
   :config
   (progn
-    (setq ido-enable-flex-matching t
-          ido-everywhere t
-          ido-file-extensions-order my/ido-order))
-  :bind (("C-x C-b" . ibuffer)
-         ("C-b" . switch-to-buffer)))
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t))
+  :bind (("C-b" . ivy-switch-buffer)))
+
 
 ;;; expand region
 (use-package expand-region
