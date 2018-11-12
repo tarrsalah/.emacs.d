@@ -502,7 +502,6 @@
 ;; custom-set-variables
 (setq custom-file "~/.emacs.d/.custom.el")
 (load custom-file)
-(set-face-attribute 'default nil :height 150)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
@@ -510,5 +509,4 @@
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "Ubuntu Mono" :height 120)
-(setq-default line-spacing 3)
+(set-face-attribute 'default nil :family "Inconsolata")
