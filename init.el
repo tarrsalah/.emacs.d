@@ -11,6 +11,7 @@
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+
 (when (< emacs-major-version 23)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
@@ -23,7 +24,6 @@
 (global-hl-line-mode 1)
 (menu-bar-mode 0)
 (global-auto-revert-mode)
-
 
 ;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
@@ -38,8 +38,8 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(setq initial-scratch-message ""
+(
+setq initial-scratch-message ""
       inhibit-startup-message t)
 
 ;; from http://www.emacswiki.org/emacs/BackupDirectory#toc1
@@ -74,16 +74,15 @@
   (toggle-read-only)
   (ansi-color-apply-on-region (point-min) (point-max))
   (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; theme
 (setq custom-safe-themes t)
 (load-theme 'sanityinc-tomorrow-night)
 
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;;; dired
-(add-hook 'dired-load-hook
-          '(lambda () (require 'dired-x)))
+(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
 
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$\\|__pycache__")
@@ -115,7 +114,7 @@
 ;;; ivy-mode
 (use-package swiper
   :ensure t
-  :config
+  :init
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
