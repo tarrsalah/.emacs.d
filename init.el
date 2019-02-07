@@ -146,22 +146,15 @@ setq initial-scratch-message ""
 (use-package paredit
   :ensure t)
 
-;; grizzl for projectile completion
-(use-package grizzl
-  :ensure t
-  :config
-  (custom-set-faces
-   '(grizzl-selection-face ((t (:foreground "#8F9D6A"))))))
 
 ;; projectile
 (use-package projectile
   :ensure t
   :config
   (progn
-    (projectile-global-mode)
-    (setq projectile-completion-system 'grizzl)
-    (setq projectile-keymap-prefix (kbd "C-c p"))
-    (setq projectile-enable-caching t)
+    (projectile-mode +1)
+    (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     (add-to-list
      'projectile-globally-ignored-directories "dist")
     (add-to-list
@@ -172,6 +165,12 @@ setq initial-scratch-message ""
      'projectile-globally-ignored-directories "vendor")
     (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
+
+
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode))
 
 ;; flycheck
 (use-package flycheck
