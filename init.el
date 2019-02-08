@@ -507,4 +507,4 @@ setq initial-scratch-message ""
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "Inconsolata")
+(set-face-attribute 'default nil :family "FiraCode")
