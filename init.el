@@ -58,7 +58,14 @@ setq initial-scratch-message ""
 ;; 4 spaces for tab
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
+
+;; xml
+(setq
+    nxml-child-indent 4
+    nxml-attribute-indent 4
+    nxml-slash-auto-complete-flag t)
 
 ;; initial window
 (setq initial-frame-alist
