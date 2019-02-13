@@ -439,11 +439,8 @@ setq initial-scratch-message ""
           (lambda ()
             (progn
               (flyspell-mode 0)
-              (setq ispell-dictionary "francais")
+            ;;(setq ispell-dictionary "francais")
               (setq TeX-PDF-mode t))))
-
-(defalias  'fsb 'flyspell-buffer)
-(defalias  'fsm 'flyspell-mode)
 
 (add-hook 'LaTeX-mode-hook
           (lambda ()
@@ -486,16 +483,7 @@ setq initial-scratch-message ""
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "<escape>") (kbd "C-g"))
-(global-set-key (kbd "C-,") 'shell-command)
 
-;;; alias
-(defalias 'eb 'eval-buffer)
-(defalias 'er 'eval-region)
-(defalias 'erb 'erase-buffer)
-(defalias 'fc 'flycheck-mode)
-(defalias 'wc 'whitespace-cleanup)
-
-;;
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
