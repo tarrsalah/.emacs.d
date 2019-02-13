@@ -87,6 +87,32 @@ setq initial-scratch-message ""
 (setq custom-safe-themes t)
 (load-theme 'sanityinc-tomorrow-night)
 
+;; ido
+(require 'ido)
+(ido-mode)
+(ido-everywhere)
+
+(setq ido-enable-prefix t)
+(setq ido-enable-flex-matching t)
+
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
+(setq ido-use-virtual-buffers t)
+
+(global-set-key (kbd "C-b") 'ido-switch-buffer)
+
+;; ido-vertical-mode
+(require 'ido-vertical-mode)
+(ido-vertical-mode)
+
+
+;; magit integration
+(setq magit-completing-read-function #'magit-ido-completing-read)
+
+;; flx-ido
+(require 'flx-ido)
+(flx-ido-mode 1)
+(setq ido-use-faces nil)
 
 ;;; dired
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
@@ -117,16 +143,6 @@ setq initial-scratch-message ""
 ;;; ibuffer
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)))
-
-;;; ivy-mode
-(use-package swiper
-  :ensure t
-  :init
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t))
-  :bind (("C-b" . ivy-switch-buffer)))
 
 
 ;;; expand region
@@ -172,12 +188,6 @@ setq initial-scratch-message ""
      'projectile-globally-ignored-directories "vendor")
     (add-to-list
      'projectile-globally-ignored-directories "node_modules")))
-
-
-(use-package counsel-projectile
-  :ensure t
-  :config
-  (counsel-projectile-mode))
 
 ;; flycheck
 (use-package flycheck
