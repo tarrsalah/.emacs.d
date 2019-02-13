@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jexec
+# key: jexec
+# --
+defined('_JEXEC') or die('Restricted access');

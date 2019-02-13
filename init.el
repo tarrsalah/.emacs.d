@@ -484,14 +484,9 @@ setq initial-scratch-message ""
 ;;; key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-<tab>") 'other-window)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "<escape>") (kbd "C-g"))
-(global-set-key (kbd "C-<menu>") 'menu-bar-open)
-(global-set-key (kbd "<M-up>") 'enlarge-window)
-(global-set-key (kbd "<M-down>") 'shrink-window)
 (global-set-key (kbd "C-,") 'shell-command)
-(global-set-key (kbd "C-x e") 'erase-buffer)
 
 ;;; alias
 (defalias 'eb 'eval-buffer)
