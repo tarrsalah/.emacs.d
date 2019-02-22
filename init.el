@@ -94,10 +94,7 @@ setq initial-scratch-message ""
 
 (setq ido-enable-prefix t)
 (setq ido-enable-flex-matching t)
-
-(setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
-(setq ido-use-virtual-buffers t)
 
 (global-set-key (kbd "C-b") 'ido-switch-buffer)
 

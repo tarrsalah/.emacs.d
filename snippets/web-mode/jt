@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jt
+# key: jt
+# --
+JText::_('$0');
