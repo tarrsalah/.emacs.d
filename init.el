@@ -209,13 +209,6 @@ setq initial-scratch-message ""
 (set-face-background 'highlight-indentation-current-column-face "#666")
 (highlight-indentation-mode 1)
 
-
-;; windmove
-(global-set-key (kbd "C-c <C-left>")  'windmove-left)
-(global-set-key (kbd "C-c <C-right>") 'windmove-right)
-(global-set-key (kbd "C-c <C-up>")    'windmove-up)
-(global-set-key (kbd "C-c <C-down>")  'windmove-down)
-
 ;; ace-jumb-mode
 (use-package ace-jump-mode
   :ensure t
@@ -226,26 +219,6 @@ setq initial-scratch-message ""
   :ensure t
   :config
   (exec-path-from-shell-initialize))
-
-;; abbrev
-(define-abbrev-table
-  'global-abbrev-table
-  '(("alpha" "α")
-    ("beta" "β")
-    ("lambda" "λ")
-    ("x8" "×")
-    ("gamma" "γ")
-    ("theta" "θ")
-    ("inf" "∞")
-    ("ar1" "→")
-    ("ar2" "⇒")))
-(abbrev-mode 0)
-
-;; imenu-list
-(use-package imenu-list
-  :ensure t
-  :config
-  (global-set-key (kbd "C-'") #'imenu-list-smart-toggle))
 
 ;; org-mode
 (use-package toc-org
@@ -332,8 +305,6 @@ setq initial-scratch-message ""
 ;; geiser
 (use-package geiser
   :ensure t)
-
-;; golang
 
 ;; go completion
 (defun setup-go ()
