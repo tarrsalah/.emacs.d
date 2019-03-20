@@ -475,4 +475,4 @@ setq initial-scratch-message ""
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode")
+(set-face-attribute 'default nil :family "FiraCode" :height 100)
