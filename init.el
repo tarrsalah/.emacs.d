@@ -442,6 +442,14 @@ setq initial-scratch-message ""
     (define-key yas-minor-mode-map (kbd "C-e C-e") 'yas-expand)
     (yas-global-mode 1)))
 
+;; dump-jump
+(use-package dumb-jump
+  :bind (("C-x j" . dumb-jump-go)
+         ("M-g i" . dumb-jump-go-prompt)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :ensure)
+
 (use-package less-css-mode
   :ensure t)
 
