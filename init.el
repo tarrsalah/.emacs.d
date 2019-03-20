@@ -306,15 +306,12 @@ setq initial-scratch-message ""
 (use-package geiser
   :ensure t)
 
-;; go completion
-(defun setup-go ()
-  (progn
-    ;; automatic code formatting with gofmt
-    (add-hook 'before-save-hook 'gofmt-before-save)))
-
+;; golang
 (use-package go-mode
   :ensure t
-  :config (setup-go))
+  :config 
+  ( progn
+    (add-hook 'before-save-hook 'gofmt-before-save)))
 
 (use-package company-go
   :ensure t
@@ -325,6 +322,9 @@ setq initial-scratch-message ""
      (lambda ()
        (set (make-local-variable 'company-backends) '(company-go))
        (company-mode)))))
+
+(use-package go-rename
+  :ensure t)
 
 ;; web-mode
 (use-package web-mode
