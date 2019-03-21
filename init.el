@@ -336,13 +336,30 @@ setq initial-scratch-message ""
     (setq web-mode-enable-auto-pairing nil)
     (setq web-mode-css-indent-offset 4)
     (setq web-mode-code-indent-offset 4)
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+
+
+(use-package php-mode
+  :ensure t
+  :mode (("\\.php\\'" . php-mode))
+  :init
+  (if
+      (file-exists-p "~/.config/composer/vendor/bin" )
+      (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs"
+  	        phpunit-program "~/.config/composer/vendor/bin/phpunit")
+    (warn "Can't find composer bin directory, some tools might not work"))
+
+  (setq flycheck-phpcs-standard "PSR2")
+  (setq php-mode-coding-style (quote psr2))
+  (setq php-style-delete-trailing-whitespace 1))
+
+(use-package php-cs-fixer
+  :ensure t)
 
 ;; jade-mode for pug files
 (use-package jade-mode
