@@ -12,6 +12,9 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
+
 (when (< emacs-major-version 23)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
@@ -127,6 +130,11 @@ setq initial-scratch-message ""
 ;; markdown
 (use-package markdown-mode
   :ensure t)
+
+;; popup kill ring
+(use-package popup-kill-ring
+  :ensure t
+  :bind (("M-y" . popup-kill-ring)))
 
 ;; magit
 (use-package magit
