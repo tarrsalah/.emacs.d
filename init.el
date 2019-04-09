@@ -462,18 +462,13 @@ setq initial-scratch-message ""
   :config
   (progn
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-    (define-key yas-minor-mode-map (kbd "<tab>") nil)
-    (define-key yas-minor-mode-map (kbd "TAB") nil)
-    (define-key yas-minor-mode-map (kbd "C-e C-e") 'yas-expand)
     (yas-global-mode 1)))
 
 ;; dump-jump
 (use-package dumb-jump
+  :ensure
   :bind (("C-x j" . dumb-jump-go)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :ensure)
+         ("M-g j" . dumb-jump-go-prompt)))
 
 (use-package less-css-mode
   :ensure t)
