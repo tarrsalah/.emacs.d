@@ -118,7 +118,7 @@ setq initial-scratch-message ""
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
 
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\node_modules$\\|\\vendor$\\|\\.mysql$\\|\\.git$\\|\\tmp$\\|__pycache__")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\tmp$\\|__pycache__")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
