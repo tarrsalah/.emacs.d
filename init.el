@@ -28,13 +28,8 @@
 (menu-bar-mode 0)
 (global-auto-revert-mode)
 
-;; enable automatically pair braces and quotes
 (electric-pair-mode 1)
-
-;; disable electric indentation mode
-(electric-indent-mode 0)
-
-;; enable line numbers
+(electric-indent-mode 1)
 (global-linum-mode t)
 
 ;; enable a key in dired
@@ -63,20 +58,11 @@ setq initial-scratch-message ""
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-
 ;; xml
 (setq
     nxml-child-indent 4
     nxml-attribute-indent 4
     nxml-slash-auto-complete-flag t)
-
-;; initial window
-(setq initial-frame-alist
-      '(
-        (width . 102) ; character
-        (height . 38) ; lines
-        ))
-
 
 ;; colorize the compilation buffer
 (require 'ansi-color)
