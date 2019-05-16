@@ -72,25 +72,38 @@ setq initial-scratch-message ""
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;;; use-package
+(require 'use-package)
+
+
 ;; theme
 (setq custom-safe-themes t)
-(load-theme 'sanityinc-tomorrow-night)
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t
+  :config
+  (load-theme 'sanityinc-tomorrow-night))
+
 
 ;; ido
 (require 'ido)
 (ido-mode)
 (ido-everywhere)
-
-(setq ido-enable-prefix t)
-(setq ido-enable-flex-matching t)
 (setq ido-create-new-buffer 'always)
-
 (global-set-key (kbd "C-b") 'ido-switch-buffer)
 
-;; ido-vertical-mode
-(require 'ido-vertical-mode)
-(ido-vertical-mode)
+;; ido flex
+(use-package flx-ido
+  :ensure t
+  :config
+  (progn
+    (setq ido-enable-flex-matching t)
+    (setq ido-enable-prefix t)
+    (setq ido-enable-flex-matching t)))
 
+;; ido-vertical-mode
+(use-package ido-vertical-mode
+  :ensure t
+  :config (ido-vertical-mode))
 
 ;; magit integration
 (setq magit-completing-read-function #'magit-ido-completing-read)
@@ -109,9 +122,6 @@ setq initial-scratch-message ""
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
     (package-install p)))
-
-;;; use-package
-(require 'use-package)
 
 ;; markdown
 (use-package markdown-mode
@@ -479,14 +489,10 @@ setq initial-scratch-message ""
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
-;; custom-set-variables
-(setq custom-file "~/.emacs.d/.custom.el")
-(load custom-file)
-
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 100)
+(set-face-attribute 'default nil :family "FiraCode" :height 110)
